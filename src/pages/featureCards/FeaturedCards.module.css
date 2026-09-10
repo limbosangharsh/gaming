@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+/* ══ GRID CONTAINER ══ */
+.featRow {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1.25rem;
+  width: 100%;
+  padding: 4rem;
+}
+
+/* ══ BASE CARD STYLES ══ */
+.featBig,
+.featSmall {
+  position: relative;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ══ BIG CARD ══ */
+.featBig {
+  min-height: 280px;
+}
+
+.featBigBg {
+  position: absolute;
+  inset: 0;
+  background: var(--grad-card-big);
+  z-index: 1;
+}
+
+.featBigLabel {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 4.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.featBigImgWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  margin: 1rem 0;
+}
+
+.featBigImg {
+  max-width: 85%;
+  max-height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.75));
+  transition: transform 200ms ease;
+}
+
+.featBig:hover .featBigImg {
+  transform: scale(1.04);
+}
+
+/* ══ SMALL CARDS ══ */
+.featSmallCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.featSmall {
+  min-height: 130px;
+}
+
+.smallImgWrap {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-55%);
+  z-index: 1;
+}
+
+.featSmallImg {
+  height: 90px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
+  transition: transform 200ms ease;
+}
+
+.featSmall:hover .featSmallImg {
+  transform: scale(1.05);
+}
+
+/* ══ CARD HEADERS ══ */
+.featBigTop,
+.featSmallTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.featSmallLabel {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+}
+
+.featViews {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 3px 8px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+.eyeIcon {
+  color: var(--text-dimmed);
+}
+
+/* ══ CARD FOOTERS ══ */
+.featBigFooter,
+.featSmallFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 2;
+  margin-top: auto;
+}
+
+.featBigName,
+.featSmallName {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+.featBigSub,
+.featSmallSub {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.featCount {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+}
+
+/* ══ LIVE DOT ══ */
+.liveDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan-glow);
+  animation: dotPulse 1.5s infinite alternate ease-in-out;
+  flex-shrink: 0;
+}
+
+@keyframes dotPulse {
+  0%   { opacity: 0.3; transform: scale(0.8); }
+  100% { opacity: 1;   transform: scale(1.2); }
+}
+
+/* ══ PRICE FLASH ══ */
+.priceUp   { color: var(--accent-green) !important; }
+.priceDown { color: #ef4444 !important; }
+
+/* ══ LIVE STATUS BADGE ══ */
+.liveStatusBadge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.pulseDot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-cyan);
+  border-radius: 50%;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.pulseRing {
+  position: absolute;
+  left: 7px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--accent-cyan);
+  border-radius: 50%;
+  animation: livePing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  opacity: 0.75;
+}
+
+@keyframes livePing {
+  0%   { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.statusText {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+}
+
+/* ══ TAGS ══ */
+.labelGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.demandTag,
+.tradeVolBadge {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+}
+
+.rareTag {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+/* ══ LIVEVIEWS ALIAS ══ */
+.liveViews {
+  opacity: 0.85;
+}
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 868px) {
+  .featRow {
+    grid-template-columns: 1fr;
+  }
+}

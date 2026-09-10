@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  position: relative;
+}
+
+.label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.input_wrap {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 14px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  transition: border-color 150ms;
+}
+
+.focused {
+  border-color: var(--border-cyan-focus);
+  border-color: #f5b800 ;
+}
+
+.input_wrap.error {
+  border-color: #ef4444;
+  border-color: #e05a5a ;
+}
+
+.icon {
+  color: var(--text-dimmed);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--text-primary);
+  width: 100%;
+}
+
+.input::placeholder {
+  color: var(--text-placeholder);
+}
+
+.toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dimmed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  height: 80%;
+  transition: color 150ms;
+}
+
+.toggle:hover {
+  color: var(--text-muted);
+}
+
+.error_msg {
+  position: absolute;
+  font-size: 8px;
+  color: #e05a5a ;
+  font-family: var(--font-body);
+  bottom: -16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+/* .error_msg > span{
+} */
+.error_reserve {
+  min-height: 12px;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px var(--bg-input) inset;
+  -webkit-text-fill-color: var(--text-primary);
+  caret-color: var(--text-primary);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.error_border{
+  border: 1px solid red;
+}
+
+.icon_span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.input:disabled {
+  opacity: 0.5;
+}
+
+.input_wrap:has(.input:disabled) {
+  opacity: 0.6;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
+
+input[type="number"] {
+   -moz-appearance: textfield;
+}

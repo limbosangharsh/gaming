@@ -1,0 +1,85 @@
+:root {
+   --bg-main: #0a0a0a;
+   --bg-card: #1d1e1d;
+   --bg-card-alt: #101114;
+   /* --bg-input: #1a1b1f; */
+   --bg-input: #1a1817;
+
+   --accent-cyan: #eab308;
+   --accent-cyan-hover: rgba(234, 179, 8, 0.2);
+   --accent-cyan-glow: rgba(234, 179, 8, 0.3);
+
+   --accent-green: #eab308;
+   --accent-green-glow: rgba(234, 179, 8, 0.3);
+
+   --text-primary: #ffffff;
+   --text-secondary: #e5e5e5;
+   --text-muted: #a3a3a3;
+   --text-dimmed: #737373;
+   --text-placeholder: #525252;
+   --text-dark: #000;
+
+   --success: #5fd67a;
+   --error: #e05a5a;
+
+   --u-bg: #080808;
+   --u-bg-radial: radial-gradient(
+      ellipse 80% 70% at 50% 60%,
+      #111111 0%,
+      #0d0d0d 40%,
+      #080808 100%
+   );
+
+   --border-card: rgba(255, 255, 255, 0.08);
+   --border-subtle: rgba(255, 255, 255, 0.08);
+   --border-cyan-dim: rgba(234, 179, 8, 0.22);
+   --border-cyan-hover: rgba(234, 179, 8, 0.6);
+   --border-cyan-focus: rgba(234, 179, 8, 0.85);
+
+   --overlay-dark: rgba(0, 0, 0, 0.65);
+   --overlay-dark-heavy: rgba(0, 0, 0, 0.85);
+   --overlay-cyan-tint: rgba(234, 179, 8, 0.08);
+   --overlay-cyan-hover: rgba(234, 179, 8, 0.16);
+
+   --font-heading: "Barlow Condensed", sans-serif;
+   --font-body: "Inter", sans-serif;
+
+   --font-xs:   10px;
+   --font-sm:   12px;
+   --font-base: 14px;
+   --font-md:   16px;
+   --font-lg:   18px;
+   --font-xl:   20px;
+   --font-2xl:  24px;
+   --font-3xl:  28px;
+   --font-4xl:  32px;
+
+
+   --space-1:  4px;
+   --space-2:  8px;
+   --space-3:  12px;
+   --space-4:  16px;
+   --space-5:  20px;
+   --space-6:  24px;
+   --space-8:  32px;
+   --space-10: 40px;
+   --space-12: 48px;
+   --space-16: 64px;
+
+   --grad-card-big: linear-gradient(
+      135deg,
+      #1c1a12 0%,
+      #14130e 45%,
+      #0a0a0a 100%
+   );
+   --grad-footer: linear-gradient(
+      0deg,
+      var(--overlay-dark) 0%,
+      transparent 100%
+   );
+   --grad-footer-heavy: linear-gradient(
+      0deg,
+      var(--overlay-dark-heavy) 0%,
+      transparent 100%
+   );
+}
