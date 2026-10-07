@@ -5,6 +5,8 @@
    /* --bg-input: #1a1b1f; */
    --bg-input: #1a1817;
 
+   --black: #000;
+
    --accent-cyan: #eab308;
    --accent-cyan-hover: rgba(234, 179, 8, 0.2);
    --accent-cyan-glow: rgba(234, 179, 8, 0.3);
@@ -20,7 +22,7 @@
    --text-dark: #000;
 
    --success: #5fd67a;
-   --error: #e05a5a;
+   --error: #e05a5a; 
 
    --u-bg: #080808;
    --u-bg-radial: radial-gradient(
@@ -44,24 +46,25 @@
    --font-heading: "Barlow Condensed", sans-serif;
    --font-body: "Inter", sans-serif;
 
-   --font-xs:   10px;
-   --font-sm:   12px;
+   --font-xs: 10px;
+   --font-sm: 12px;
    --font-base: 14px;
-   --font-md:   16px;
-   --font-lg:   18px;
-   --font-xl:   20px;
-   --font-2xl:  24px;
-   --font-3xl:  28px;
-   --font-4xl:  32px;
+   --font-md: 16px;
+   --font-lg: 18px;
+   --font-xl: 20px;
+   --font-2xl: 24px;
+   --font-3xl: 28px;
+   --font-4xl: 32px;
+   --font-5xl: 36px;
 
-
-   --space-1:  4px;
-   --space-2:  8px;
-   --space-3:  12px;
-   --space-4:  16px;
-   --space-5:  20px;
-   --space-6:  24px;
-   --space-8:  32px;
+   --space-1: 4px;
+   --space-2: 8px;
+   --space-25: 10px;
+   --space-3: 12px;
+   --space-4: 16px;
+   --space-5: 20px;
+   --space-6: 24px;
+   --space-8: 32px;
    --space-10: 40px;
    --space-12: 48px;
    --space-16: 64px;

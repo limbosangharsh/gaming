@@ -1,0 +1,557 @@
+.page {
+   margin-top: 113px;
+   height: 85vh;
+   width: 100%;
+   padding: 1rem;
+   gap: 1rem;
+   display: flex;
+   background: radial-gradient(
+      ellipse 80% 70% at 50% 60%,
+      #111111 0%,
+      #0d0d0d 40%,
+      #080808 100%
+   );
+   position: relative;
+}
+
+.left {
+   width: 65%;
+   border: 1px solid var(--border-subtle);
+}
+.right {
+   width: 35%;
+   border: 1px solid var(--border-subtle);
+   /* padding: 1rem; */
+}
+
+.payment_title {
+   font-family: var(--font-heading);
+   font-size: 14px;
+   font-weight: 700;
+   letter-spacing: 0.1em;
+   text-transform: uppercase;
+   color: var(--text-primary);
+   margin: 0;
+}
+
+/* Payment grid — vertical stack */
+.payment_grid {
+   display: flex;
+   flex-direction: column;
+   gap: 0;
+   border: 1px solid var(--border-subtle);
+   border-radius: 2px;
+   overflow: hidden;
+}
+
+/* Each payment card row */
+.payment_card {
+   border-bottom: 1px solid var(--border-subtle);
+   padding: 14px 16px;
+   cursor: pointer;
+   display: flex;
+   flex-direction: column;
+   gap: 0;
+   transition: background 150ms;
+   background: transparent;
+}
+
+.payment_card:hover:not(.payment_active) {
+   background-color: rgba(0, 0, 0, 0.19);
+}
+
+.payment_active {
+   border: 1px solid var(--accent-cyan);
+   background-color: #080808;
+}
+
+/* Header row inside each card: radio + icon + label */
+.payment_header_row {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+}
+
+.payment_radio {
+   width: 14px;
+   height: 14px;
+   border-radius: 50%;
+   border: 2px solid var(--border-subtle);
+   flex-shrink: 0;
+   transition: border-color 150ms;
+}
+
+.payment_radio_active {
+   border-color: var(--accent-cyan);
+   background: radial-gradient(circle, var(--accent-cyan) 40%, transparent 40%);
+}
+
+.payment_icon_wrap {
+   color: var(--text-muted);
+   display: flex;
+   align-items: center;
+   flex-shrink: 0;
+}
+
+.payment_active .payment_icon_wrap {
+   color: var(--accent-cyan);
+}
+
+.payment_info {
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+}
+
+.payment_label {
+   font-family: var(--font-heading);
+   font-size: 13px;
+   font-weight: normal;
+   color: var(--text-primary);
+   letter-spacing: 0.04em;
+}
+
+.payment_sub {
+   font-family: var(--font-body);
+   font-size: 10px;
+   color: var(--text-dimmed);
+}
+
+/* Expanded inline form */
+.payment_form {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   /* gap: 26px; */
+   cursor: default;
+   border-top: 1px dashed var(--border-subtle);
+   margin-top: 12px;
+   padding-top: 12px;
+   /* height: 100%; */
+}
+
+.hold_form {
+   display: flex;
+   flex-direction: column;
+   gap: 26px;
+   height: auto;
+   max-height: none;
+   overflow: visible;
+   padding-bottom: 26px;
+}
+
+.payment_divider {
+   height: 1px;
+   border: none;
+   border-top: 1px dashed var(--border-subtle);
+   background: transparent;
+   margin: 12px 0 4px;
+}
+
+.card_row {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 0.75rem;
+}
+
+/* Crypto inline */
+.crypto_wrap {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+
+.crypto_label {
+   font-family: var(--font-body);
+   font-size: 11px;
+   color: var(--text-dimmed);
+   text-transform: uppercase;
+   letter-spacing: 0.06em;
+}
+
+.crypto_address {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 10px;
+   border: 1px solid var(--border-subtle);
+   border-radius: 4px;
+   padding: 8px 10px;
+   cursor: pointer;
+}
+
+.crypto_addr_text {
+   font-family: var(--font-body);
+   font-size: 11px;
+   color: var(--text-primary);
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.crypto_copy {
+   background: transparent;
+   border: 1px solid var(--border-cyan-dim);
+   border-radius: 4px;
+   color: var(--accent-cyan);
+   font-family: var(--font-heading);
+   font-size: 11px;
+   font-weight: 700;
+   letter-spacing: 0.06em;
+   padding: 4px 10px;
+   cursor: pointer;
+   flex-shrink: 0;
+   transition: background 150ms;
+}
+.crypto_copy_done {
+   color: #22c55e;
+   border-color: #22c55e;
+   pointer-events: none;
+}
+.crypto_copy:hover {
+   background: var(--overlay-cyan-tint);
+}
+
+.crypto_amount {
+   font-family: var(--font-heading);
+   font-size: 13px;
+   font-weight: 700;
+   color: var(--accent-cyan);
+}
+
+.perks_box {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 0.4rem;
+   padding: 0 0.5rem;
+   text-align: center;
+   border-right: 1px dashed #222;
+}
+
+.perks_box:last-child {
+   border-right: none;
+}
+
+.perk_label {
+   color: var(--text-primary);
+   font-family: var(--font-heading);
+   font-size: var(--font-base);
+   font-weight: normal;
+}
+
+.perk_desc {
+   color: var(--text-dimmed);
+   font-family: var(--font-body);
+   font-size: var(--font-xs);
+   text-align: center;
+}
+
+/* Crypto tabs */
+.crypto_tabs {
+   display: flex;
+   gap: 6px;
+}
+
+.crypto_tab {
+   background: transparent;
+   border: 1px solid var(--border-subtle);
+   border-radius: 4px;
+   color: var(--text-dimmed);
+   font-family: var(--font-heading);
+   font-size: 11px;
+   font-weight: 700;
+   letter-spacing: 0.06em;
+   padding: 5px 14px;
+   cursor: pointer;
+   transition: all 150ms;
+}
+
+.crypto_tab:hover {
+   border-color: var(--accent-cyan);
+   color: var(--accent-cyan);
+}
+
+.crypto_tab_active {
+   border-color: var(--accent-cyan);
+   color: var(--accent-cyan);
+   background: var(--overlay-cyan-tint);
+}
+
+.crypto_info {
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+   border-radius: 4px;
+}
+
+.crypto_info_row {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.crypto_info_label {
+   font-family: var(--font-body);
+   font-size: 11px;
+   color: var(--text-dimmed);
+}
+
+.crypto_info_val {
+   font-family: var(--font-heading);
+   font-size: 11px;
+   font-weight: 700;
+   color: var(--text-primary);
+}
+/* PayPal */
+.paypal_wrap {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+
+.paypal_info {
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+   border-radius: 4px;
+}
+
+.paypal_info_row {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.paypal_info_label {
+   font-family: var(--font-body);
+   font-size: 11px;
+   color: var(--text-dimmed);
+}
+
+.paypal_info_val {
+   font-family: var(--font-heading);
+   font-size: 11px;
+   font-weight: 700;
+   color: var(--text-primary);
+}
+
+.paypal_note {
+   font-family: var(--font-body);
+   font-size: 10px;
+   color: var(--text-dimmed);
+   line-height: 1.5;
+   margin: 0;
+   padding: 8px 10px;
+   border-left: 2px solid var(--border-subtle);
+}
+
+.payment_desc_box {
+   border-left: 2px solid var(--border-subtle);
+   padding-left: 12px;
+   display: flex;
+   flex: 1;
+}
+
+.payment_desc {
+   font-family: var(--font-body);
+   font-size: 11px;
+   color: var(--text-dimmed);
+   line-height: 1.7;
+   margin: 0;
+}
+
+.modal {
+   position: fixed;
+   inset: 0;
+   z-index: 9999;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   background: rgba(0, 0, 0, 0.65);
+   backdrop-filter: blur(5px);
+}
+
+.paymentContent {
+   width: 360px;
+   height: 250px;
+   max-width: calc(100% - 40px);
+
+   padding: 32px 28px;
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+
+   background: var(--grad-card-big);
+   border: 2px solid var(--border-cyan-dim);
+   border-radius: 16px;
+
+   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.successIcon {
+   color: #1fc16b;
+   margin-bottom: 16px;
+
+   animation: scaleIn 0.3s ease;
+}
+
+.failedIcon {
+   color: #d2001f;
+   margin-bottom: 16px;
+
+   animation: scaleIn 0.3s ease;
+}
+
+.paymentContent h2 {
+   margin: 0;
+   font-size: 22px;
+   font-weight: 600;
+}
+
+.paymentContent p {
+   margin: 8px 0 24px;
+
+   color: #9ca3af;
+   font-size: 14px;
+   line-height: 1.5;
+}
+
+/* 3 second progress bar */
+.progressTrack {
+   width: 100%;
+   height: 5px;
+   overflow: hidden;
+   border-radius: 10px;
+   background-color: yellow;
+}
+
+.progressBar {
+   width: 100%;
+   height: 100%;
+   transform-origin: right;
+   animation: paymentProgress 3s linear forwards;
+   border-radius: inherit;
+}
+
+.processingProgress {   
+   /* background: #0077ff; */
+   background: rgb(124, 124, 124);
+
+}
+
+.successProgress {
+   background: #1fc16b;
+}
+
+.failedProgress {
+   background: #d2001f;
+}
+
+@keyframes paymentProgress {
+   from {
+      transform: scaleX(1);
+   }
+
+   to {
+      transform: scaleX(0);
+   }
+}
+
+@keyframes scaleIn {
+   from {
+      opacity: 0;
+      transform: scale(0.7);
+   }
+
+   to {
+      opacity: 1;
+      transform: scale(1);
+   }
+}
+
+.processingIcon {
+   color: #0077ff;
+   margin-bottom: 16px;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+   from {
+      transform: rotate(0deg);
+   }
+
+   to {
+      transform: rotate(360deg);
+   }
+}
+.modal_header {
+   font-family: var(--font-heading);
+   font-weight: normal;
+   color: var(--text-primary);
+}
+
+.modal_desc {
+   font-family: var(--font-body);
+   font-weight: normal;
+   color: var(--text-dimmed);
+}
+
+
+@media (max-width: 1024px){
+   .page{
+      /* flex-direction: column; */
+      height: auto;
+      margin-top: 0;
+      /* padding-top: 123px; */
+      padding-top: 124px;
+      overflow: hidden !important;
+      padding-bottom: auto;
+   }
+
+   .right{
+      width: 400px;
+   }
+
+   .perk_label{
+      background-color: red;
+      font-size: 12px;
+   }
+
+   .hold_form{
+      padding-bottom: 16px;
+   }
+  
+}
+
+
+@media(max-width: 768px){
+   .page{
+      flex-direction: column-reverse;
+      margin-top: 56px;
+      padding: 43px 1rem 1rem 1rem;
+   }
+   .left{
+      width: 100%;
+   }
+   .right{
+      width: 100%;
+   }
+}
+
+@media(max-width: 480px){
+   .page{
+      margin-top: 50px;
+   }
+
+ 
+}

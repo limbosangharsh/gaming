@@ -31,10 +31,10 @@ const Hero = () => {
           </p>
 
           <div className={s.ctaRow}>
-            <a href="/browse" className={s.btnPrimary}>
+            <a href="/store" className={s.btnPrimary}>
               Browse Market
             </a>
-            <a href="/steam" className={s.btnGhost}>
+            <a href="/store" className={s.btnGhost}>
               Connect Steam
               <svg className={s.arrow} viewBox="0 0 16 16" fill="none">
                 <path

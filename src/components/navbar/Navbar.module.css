@@ -4,19 +4,26 @@
    top: 0;
    left: 0;
    width: 100%;
-   z-index: 100;
    background-color: var(--bg-main, #050a0e);
+   /* background-color: var(--black); */
    border-bottom: 1px solid var(--border-cyan-dim, rgba(0, 242, 254, 0.22));
+   z-index: 999;
 }
 
 .container {
-   max-width: 1400px;
-   height: 10vh;
-   margin: 0 auto;
-   padding: 0 2rem;
+   /* max-width: 1400px; */
+
+   /* margin: 0 auto; */
+   padding: 0 1rem;
    display: flex;
    align-items: center;
    justify-content: space-between;
+   height: 80px;
+   border-bottom: 1px solid var(--border-cyan-dim);
+   background-color: var(--bg-main, #050a0e);
+   z-index: 1;
+   position: relative;
+   z-index: 999;
 }
 
 /* ══════════════════════════
@@ -176,11 +183,15 @@
    display: flex;
    align-items: center;
    background: rgba(0, 0, 0, 0.45);
+   background-color: var(--bg-main, #050a0e);
+
    border-top: 1px solid var(--border-cyan-dim, rgba(74, 222, 204, 0.2));
-   height: 5vh;
+   border-bottom: 1px solid var(--border-cyan-dim);
    overflow: hidden;
    backdrop-filter: blur(8px);
    cursor: pointer;
+   /* z-index: 2; */
+
 }
 
 .tickerTag {
@@ -196,7 +207,6 @@
    border-right: 1px solid rgba(255, 255, 255, 0.1);
    white-space: nowrap;
    background: rgba(0, 0, 0, 0.7);
-   z-index: 2;
    height: 100%;
 }
 
@@ -244,6 +254,7 @@
    will-change: transform;
    width: max-content;
    animation: scrollLeftToRight 22s linear infinite;
+   height: 20px;
 }
 
 .liveTicker .tickerTrack:hover {
@@ -459,6 +470,40 @@
    color: #ef4444;
 }
 
+.device_filter {
+   display: flex;
+   height: 33px;
+   /* background-color: rgba(0, 0, 0, 0.45); */
+   background-color: var(--bg-main, #050a0e);
+   width: 100%;
+   position: fixed;
+   /* z-index: 99; */
+   right: 0;
+   align-items: center;
+   justify-content: space-between;
+   padding: 1rem;
+   border-bottom: 1px solid var(--border-cyan-dim);
+
+   transition: transform 150ms ease;
+   z-index: -99;
+}
+
+.storeFilter {
+   width: calc(100% - 15%);
+}
+
+.showFilter {
+   transform: translateY(0);
+}
+
+.hideFilter {
+   transform: translateY(-100%);
+}
+
+.activeFilter {
+   color: var(--text-primary);
+}
+
 /* ══════════════════════════
    MOBILE BOTTOM TAB BAR
 ══════════════════════════ */
@@ -467,8 +512,30 @@
    display: none;
 }
 
+/* filter icon hide */
+.filterIcon {
+   display: none;
+}
+
+@media (max-width: 1024px) {
+   .storeFilter {
+      width: calc(100% - 25%);
+   }
+}
+
 @media (max-width: 768px) {
-   /* hide middle nav links */
+   /* .header { */
+   /* height: 90px; */
+   /* } */
+
+   .filterIcon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dimmed);
+      transition: color 150ms ease;
+   }
+
    .middle {
       display: none;
    }
@@ -499,6 +566,7 @@
    /* ticker smaller */
    .liveTicker {
       height: 32px;
+      /* display: none; */
    }
 
    .tickerTag {
@@ -546,6 +614,10 @@
       font-weight: 500;
       letter-spacing: 0.04em;
    }
+
+   .storeFilter {
+      width: 100%;
+   }
 }
 
 @media (max-width: 480px) {
@@ -557,7 +629,7 @@
       height: 50px;
    }
 
-      .btnGhost {
+   .btnGhost {
       font-size: 10px;
       padding: 0 10px;
       height: 24px;
@@ -568,5 +640,4 @@
       padding: 0 12px;
       height: 24px;
    }
-
 }

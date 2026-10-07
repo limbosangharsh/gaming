@@ -17,6 +17,7 @@ import Cart from "./pages/cart/Cart";
 import CustomToast from "./utils/customToast/CustomToast";
 import Orders from "./pages/orders/Orders";
 import Home from "./pages/home/Home";
+import Checkout from "./pages/checkout/Checkout";
 
 const ScrollToTop = () => {
    const { pathname } = useLocation();
@@ -55,6 +56,8 @@ const App = () => {
                title={toast.title}
                description={toast.description}
                bottomOffset={24 + index * 80}
+               onClick={toast.onClick}
+               // bottomOffset={70 + index * 80}
             />
          ))}
          {!hideLayout && <Navbar />}
@@ -66,9 +69,10 @@ const App = () => {
             <Route path="/store/:category" element={<Store />} />
             <Route path="/store/item/:id" element={<ViewItem />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/profile" element={<Orders />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/checkout" element={<Checkout />} />
          </Routes>
-         {/* {!hideLayout && <Footer />} */}
+         {!hideLayout && <Footer />}
       </div>
    );
 };

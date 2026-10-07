@@ -12,7 +12,7 @@
   z-index: 9999;
   min-width: 340px;
   animation: slideUp 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  transition: bottom 300ms cubic-bezier(0.16, 1, 0.3, 1);  /* ← add this */
+  transition: bottom 300ms cubic-bezier(0.16, 1, 0.3, 1);  
 }
 .wrapper.hide {
    animation: slideDown 400ms cubic-bezier(0.4, 0, 1, 1) forwards;

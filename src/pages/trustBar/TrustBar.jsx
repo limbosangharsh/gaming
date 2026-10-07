@@ -27,12 +27,12 @@ const TRUST_ITEMS = [
     value: "Explore 1.3M+",
     label: "Skins",
   },
-  {
-    id: 5,
-    icon: "◉",
-    value: "Happy 4.6M",
-    label: "Customers",
-  },
+  // {
+  //   id: 5,
+  //   icon: "◉",
+  //   value: "Happy 4.6M",
+  //   label: "Customers",
+  // },
 ];
 
 const TrustBar = () => {

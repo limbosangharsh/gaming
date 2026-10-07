@@ -226,3 +226,167 @@
   color: var(--accent-cyan);
   border-color: var(--accent-cyan);
 }
+
+@media (max-width: 900px) {
+  .container {
+    padding: 1rem 1.5rem;
+  }
+
+  .title {
+    font-size: 25px;
+  }
+
+  .grid {
+    gap: 0.8rem;
+  }
+
+  .featured_img_wrap {
+    height: 380px;
+  }
+
+  .featured_body {
+    padding: 14px;
+  }
+
+  .featured_title {
+    font-size: 18px;
+  }
+
+  .side_body {
+    padding: 12px;
+  }
+
+  .side_title {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 1rem 1rem;
+  }
+
+  .header {
+    margin-bottom: 0.8rem;
+  }
+
+  .title {
+    font-size: 23px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .featured_img_wrap {
+    height: 360px;
+  }
+
+  .featured_body {
+    padding: 14px;
+  }
+
+  .side_list {
+    gap: 1rem;
+  }
+
+  .side_item {
+    flex-direction: row;
+    min-height: 150px;
+  }
+
+  .side_img_wrap {
+    width: 38%;
+    min-width: 38%;
+  }
+
+  .side_body {
+    padding: 12px;
+    justify-content: center;
+  }
+
+  .side_desc {
+    -webkit-line-clamp: 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.8rem 0.75rem;
+  }
+
+  .header {
+    margin-bottom: 0.7rem;
+  }
+
+  .title {
+    font-size: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  .grid {
+    gap: 0.8rem;
+  }
+
+  .featured_img_wrap {
+    height: 250px;
+  }
+
+  .featured_tag {
+    top: 10px;
+    left: 10px;
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+
+  .featured_body {
+    padding: 12px;
+    gap: 5px;
+  }
+
+  .date {
+    font-size: 9px;
+  }
+
+  .featured_title {
+    font-size: 17px;
+  }
+
+  .featured_desc {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .side_list {
+    gap: 0.8rem;
+  }
+
+  .side_item {
+    min-height: 125px;
+  }
+
+  .side_img_wrap {
+    width: 35%;
+    min-width: 35%;
+  }
+
+  .side_body {
+    padding: 10px;
+    gap: 3px;
+  }
+
+  .side_tag {
+    font-size: 8px;
+  }
+
+  .side_title {
+    font-size: 13px;
+  }
+
+  .side_desc {
+    font-size: 10px;
+    line-height: 1.4;
+    -webkit-line-clamp: 2;
+  }
+}

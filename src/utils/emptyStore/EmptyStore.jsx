@@ -9,6 +9,7 @@ const EmptyStore = ({
    desc = "Browse the store and add a skin to see it here.",
    btnLabel = "BROWSE STORE",
    btnLink = "/store",
+   showBtn = true,
 }) => {
    const navigate = useNavigate();
 
@@ -19,9 +20,11 @@ const EmptyStore = ({
          </div>
          <h3 className={s.title}>{title}</h3>
          <p className={s.desc}>{desc}</p>
-         <button className={s.btn} onClick={() => navigate(btnLink)}>
-            {btnLabel}
-         </button>
+         {showBtn && (
+            <button className={s.btn} onClick={() => navigate(btnLink)}>
+               {btnLabel}
+            </button>
+         )}
       </div>
    );
 };

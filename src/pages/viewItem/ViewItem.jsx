@@ -33,6 +33,7 @@ const ViewItem = () => {
 
    if (!skin) return <div>Skin not found</div>;
 
+   // console.log(animateCart)
    return (
       <div className={s.wrapper}>
          <div className={s.top}>

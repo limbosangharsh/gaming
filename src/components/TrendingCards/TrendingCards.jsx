@@ -66,7 +66,8 @@ const TrendingCards = ({
    }, [loadingTimer]);
 
    const handleViewMoreRouting = () => {
-      navigate(`/${viewMoreLink}`);
+      // console.log('click ', viewMoreLink)
+      navigate(`${viewMoreLink}`);
    };
 
    const handleViewItem = (skin) => {

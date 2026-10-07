@@ -372,3 +372,32 @@
       transform: rotate(360deg);
    }
 }
+
+@media (max-width: 880px) {
+   .left {
+      display: none;
+   }
+
+   .inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+
+
+}
+
+@media (max-width: 500px) {
+   .page{
+      overflow: hidden;
+   }
+
+   .card {
+      width: 100%;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 10px 10px 5px #000;
+
+      height: 200%;
+   }
+
+}

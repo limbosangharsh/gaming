@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import s from "./Navbar.module.css";
 import { NavHeaders, INITIAL_DROPS } from "../../utils/constants/Constants";
-import { useLocation, Link, useNavigate } from "react-router-dom";
+import { useLocation, Link, useNavigate, useParams } from "react-router-dom";
 import Icon from "../../utils/icons/Icons";
+import BreadCrumb from "../BreadCrumb/BreadCrumb";
+import { useSort } from "../../hooks/storeHooks/useSort.hooks";
 
 const Navbar = () => {
+   const { openSidebar, deviceFilter, toggleSidebar } = useSort();
    const navigate = useNavigate();
    const location = useLocation();
    const [drops] = useState(INITIAL_DROPS);
@@ -15,17 +18,6 @@ const Navbar = () => {
 
    const [dropdownOpen, setDropdownOpen] = useState(false);
 
-   useEffect(() => {
-      const updateCount = () => {
-         setCartCount(JSON.parse(localStorage.getItem("cart") || "[]").length);
-      };
-
-      window.addEventListener("cartUpdated", updateCount);
-      return () => {
-         window.removeEventListener("cartUpdated", updateCount);
-      };
-   }, []);
-
    const handleRouteSignup = () => {
       navigate("/signup");
    };
@@ -35,7 +27,7 @@ const Navbar = () => {
    };
 
    const handleProfileRoutes = () => {
-      navigate("/profile");
+      navigate("/orders");
    };
 
    const [user, setUser] = useState(() =>
@@ -50,6 +42,21 @@ const Navbar = () => {
       navigate("/signin");
    };
 
+   const handleFilterClick = () => {
+      toggleSidebar();
+   };
+
+   useEffect(() => {
+      const updateCount = () => {
+         setCartCount(JSON.parse(localStorage.getItem("cart") || "[]").length);
+      };
+
+      window.addEventListener("cartUpdated", updateCount);
+      return () => {
+         window.removeEventListener("cartUpdated", updateCount);
+      };
+   }, []);
+
    useEffect(() => {
       const syncUser = () => {
          setUser(JSON.parse(localStorage.getItem("skinvault_user")));
@@ -59,7 +66,20 @@ const Navbar = () => {
       return () => window.removeEventListener("userUpdated", syncUser);
    }, []);
 
+   useEffect(() => {
+      const handleBodyClick = () => {
+         setDropdownOpen(false);
+      };
 
+      document.body.addEventListener("click", handleBodyClick);
+
+      return () => {
+         document.body.removeEventListener("click", handleBodyClick);
+      };
+   }, []);
+
+   const filterClass =
+      location.pathname === "/store" ? s.storeFilter : s.otherFilter;
 
    return (
       <header className={s.header}>
@@ -108,7 +128,10 @@ const Navbar = () => {
 
                      <span
                         className={s.user_initial}
-                        onClick={() => setDropdownOpen(!dropdownOpen)}
+                        onClick={(e) => {
+                           (setDropdownOpen(!dropdownOpen),
+                              e.stopPropagation());
+                        }}
                      >
                         <span className={s.user_letter}>
                            {user.firstName ? user.firstName[0] : user.email[0]}
@@ -129,7 +152,7 @@ const Navbar = () => {
                            <div
                               className={s.dropdown_item}
                               onClick={() => {
-                                 navigate("/profile");
+                                 navigate("/orders");
                                  setDropdownOpen(false);
                               }}
                            >
@@ -174,27 +197,63 @@ const Navbar = () => {
          </nav>
 
          {/* ══ LIVE TICKER ══ */}
-         <div className={s.liveTicker}>
-            <div className={s.tickerTag}>
-               <span className={s.livePulse}></span>
-               <span>LIVE DROPS</span>
-            </div>
-            <div className={s.tickerWindow}>
-               <div className={s.tickerTrack}>
-                  {tickerItems.map((item, index) => (
-                     <div key={`${item.id}-${index}`} className={s.tickerItem}>
-                        <span
-                           className={`${s.wearTag} ${s[item.wear.toLowerCase()]}`}
+         {(location.pathname === "/" ||
+            (location.pathname.startsWith("/store") &&
+               !location.pathname.startsWith("/store/item/"))) && (
+            <div className={s.liveTicker}>
+               <div className={s.tickerTag}>
+                  <span className={s.livePulse}></span>
+                  <span>LIVE DROPS</span>
+               </div>
+
+               <div className={s.tickerWindow}>
+                  <div className={s.tickerTrack}>
+                     {tickerItems.map((item, index) => (
+                        <div
+                           key={`${item.id}-${index}`}
+                           className={s.tickerItem}
                         >
-                           {item.wear}
-                        </span>
-                        <span className={s.itemName}>{item.name}</span>
-                        <span className={s.itemPrice}>{item.price}</span>
-                     </div>
-                  ))}
+                           <span
+                              className={`${s.wearTag} ${
+                                 s[item.wear.toLowerCase()]
+                              }`}
+                           >
+                              {item.wear}
+                           </span>
+
+                           <span className={s.itemName}>{item.name}</span>
+
+                           <span className={s.itemPrice}>{item.price}</span>
+                        </div>
+                     ))}
+                  </div>
                </div>
             </div>
-         </div>
+         )}
+
+         {location.pathname !== "/" && (
+            <div
+               className={`${s.device_filter} ${
+                  deviceFilter ? s.showFilter : s.hideFilter
+               } ${filterClass}`}
+            >
+               <span className={s.route_store}>
+                  <BreadCrumb />
+               </span>
+
+               {location.pathname.startsWith("/store") && (
+                  <span
+                     className={`${s.filterIcon} ${
+                        openSidebar ? s.activeFilter : ""
+                     }`}
+                     onClick={toggleSidebar}
+                  >
+                     {/* <span>Filters</span> */}
+                     <Icon name="filterIcon" size={20} />
+                  </span>
+               )}
+            </div>
+         )}
 
          {/* ══ MOBILE BOTTOM NAV ══ */}
          <nav className={s.bottomNav}>
@@ -220,11 +279,12 @@ const Navbar = () => {
                <span className={s.bottomNav_label}>Cart</span>
             </Link>
             <Link
-               to="/contact"
-               className={`${s.bottomNav_item} ${location.pathname === "/contact" ? s.bottomNav_item_active : ""}`}
+               to="/orders"
+               onClick={handleFilterClick}
+               className={`${s.bottomNav_item} ${location.pathname === "/orders" ? s.bottomNav_item_active : ""}`}
             >
-               <Icon name="contactIcon" size={20} />
-               <span className={s.bottomNav_label}>Contact</span>
+               <Icon name="userIcon" size={20} />
+               <span className={s.bottomNav_label}>Profile</span>
             </Link>
          </nav>
       </header>

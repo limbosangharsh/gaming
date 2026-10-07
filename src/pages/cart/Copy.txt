@@ -1,0 +1,248 @@
+import React, { useState } from "react";
+import s from "./Cart.module.css";
+import { rarities } from "../../utils/constants/Constants";
+import Icon from "../../utils/icons/Icons";
+import CustomInput from "../../components/CustomInput/CustomInput";
+import {
+   PAYMENT_PERKS,
+   PAYMENT_METHODS,
+   PAYMENT_DESCRIPTIONS,
+} from "../../utils/constants/Constants";
+import EmptyStore from "../../utils/emptyStore/EmptyStore";
+const RARITY_COLOR = Object.fromEntries(rarities.map((r) => [r.id, r.color]));
+import { useCartData } from "../../hooks/cartHooks/useCartData";
+import { usePromo } from "../../hooks/cartHooks/usePromo.hooks";
+import { usePayment } from "../../hooks/cartHooks/usePayment.hooks";
+import { useNavigate } from "react-router-dom";
+import Spinner from "../../utils/loader/Loader.jsx";
+
+const Cart = () => {
+   const {
+      cartData,
+      cartItems,
+      handleIncrementQuantity,
+      handleDecrementQuantity,
+      handleRemoveFromCart,
+      isCartEmpty,
+      handlePlaceOrder,
+      loading,
+   } = useCartData();
+
+   const {
+      promo,
+      handlePromo,
+      handleApplyPromo,
+      handleClearPromo,
+      validPromo,
+      invalidPromo,
+      discountPercentage,
+      showCartIsEmpty,
+   } = usePromo();
+
+   const {
+      selectedPayment,
+      setCardDetails,
+      setPaypalDetails,
+      setSelectedCoin,
+      selectedCoin,
+      paypalDetails,
+      cardDetails,
+      handlePaymentSelect,
+      handleCardChange,
+      handlePaypalChange,
+      handleSubmit,
+      errors,
+      setErrors,
+   } = usePayment();
+
+   const navigate = useNavigate("");
+   const subtotal = cartItems.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0,
+   );
+   const discountAmount = subtotal * (discountPercentage / 100);
+   const platformFee = (subtotal - discountAmount) * 0.02;
+   const total = subtotal - discountAmount + platformFee;
+
+   const promoInputProps = {
+      wrapperClassname: invalidPromo
+         ? s.invalid_promo
+         : validPromo
+           ? s.valid_promo
+           : "",
+      suffixIcon: validPromo
+         ? "close"
+         : validPromo
+           ? "checkIcon"
+           : invalidPromo
+             ? "exclamationIcon"
+             : "",
+      iconColor: invalidPromo ? "#e05a5a" : validPromo ? "#22c55e" : "#737373",
+      iconClassname: invalidPromo
+         ? s.invalid_icon
+         : validPromo
+           ? s.valid_icon
+           : "",
+      onSuffixClick: invalidPromo ? undefined : handleClearPromo,
+      //   disabled: validPromo
+   };
+
+   return (
+      <div className={s.container}>
+         {/* ══ RIGHT ══ */}
+         <div className={s.cart_right}>
+            <h3 className={s.summary_title}>Order Receipt</h3>
+
+            <div className={s.summary_divider} />
+
+            {isCartEmpty && <EmptyStore />}
+            {cartItems.map((item) => (
+               <div
+                  key={item.id}
+                  className={s.receipt_row}
+                  style={{
+                     "--rarity-color": RARITY_COLOR[item.rarity] ?? "#ffffff",
+                  }}
+               >
+                  <div className={s.receipt_row_left}>
+                     <span className={s.receipt_name}>
+                        <div className={s.receipt_name_row}>
+                           {item.weapon} | {item.name}
+                        </div>
+                        <span className={s.receipt_condition}>
+                           {item.condition}
+                        </span>
+                     </span>
+                  </div>
+                  <div className={s.receipt_row_right}>
+                     <div className={s.quantity_ctrl}>
+                        <button
+                           className={`${s.qty_btn} ${item.quantity === 1 ? s.qty_btn_disabled : ""}`}
+                           onClick={() => handleDecrementQuantity(item.id)}
+                        >
+                           <Icon name={"removeIcon"} size={12} />
+                        </button>
+                        <span className={s.qty_val}>{item.quantity}</span>
+                        <button
+                           className={s.qty_btn}
+                           onClick={() => handleIncrementQuantity(item.id)}
+                        >
+                           <Icon name={"addIcon"} size={12} />
+                        </button>
+                     </div>
+                     <span className={s.receipt_price}>
+                        ${item.price.toFixed(2)}
+                     </span>
+                     <span
+                        className={s.close_span}
+                        onClick={() => handleRemoveFromCart(item.id, setErrors)}
+                     >
+                        <Icon name={"close"} size={12} />
+                     </span>
+                  </div>
+               </div>
+            ))}
+
+            {/* <div className={s.summary_divider} /> */}
+            <div className={s.space_up}></div>
+            <div className={s.summary_divider} />
+
+            <div className={s.hold_math}>
+               <div className={s.summary_row}>
+                  <span className={s.summary_label}>Subtotal</span>
+                  <span className={s.summary_val}>${subtotal.toFixed(2)}</span>
+               </div>
+               {/* {cartItems.some((item) => item.discount > 0) && ( */}
+               <div className={s.summary_row}>
+                  <span className={s.summary_label}>
+                     Discount ( {discountPercentage}% )
+                  </span>
+                  <span className={s.summary_discount}>
+                     ${discountAmount.toFixed(2)}
+                  </span>{" "}
+               </div>
+               {/* )} */}
+               <div className={s.summary_row}>
+                  <span className={s.summary_label}>Platform Fee ( 2% )</span>
+                  <span className={s.summary_val}>
+                     ${platformFee.toFixed(2)}
+                  </span>
+               </div>
+               <div className={s.summary_row}>
+                  <span className={s.summary_label}>Trade Lock</span>
+                  <span className={`${s.summary_val} ${s.trade_ok}`}>
+                     {cartItems.every((item) => !item.tradeLock)
+                        ? "None"
+                        : "Applied"}
+                  </span>
+               </div>
+            </div>
+
+            <div className={s.summary_divider} />
+
+            <div className={s.summary_row}>
+               <span className={s.summary_total_label}>Total</span>
+               <span className={s.summary_total_val}>${total.toFixed(2)}</span>
+            </div>
+
+            <div className={s.promo_wrap}>
+               <CustomInput
+                  type="text"
+                  placeholder="Promo code"
+                  name="promo"
+                  value={promo}
+                  onChange={handlePromo}
+                  className={s.promo_input}
+                  error={invalidPromo ? " " : ""}
+                  iconSize={18}
+                  iconClassname={s.invalid_icon}
+                  {...promoInputProps}
+               />
+               <button
+                  className={`${s.promo_btn} ${invalidPromo ? s.invalid_promo : ""}  ${validPromo ? s.valid_promo : ""} ${isCartEmpty ? s.promo_btn_disabled : ""} `}
+                  onClick={
+                     isCartEmpty
+                        ? showCartIsEmpty
+                        : validPromo
+                          ? handleClearPromo
+                          : handleApplyPromo
+                  }
+               >
+                  {validPromo ? "Applied" : "Apply"}
+               </button>
+            </div>
+
+            <button
+               className={`${s.checkout_btn} ${loading ? s.loading : ""}`}
+               onClick={() => handleSubmit(handlePlaceOrder)}
+               disabled={isCartEmpty}
+            >
+               {loading ? "Processing Payment..." : "Place Order"}
+            </button>
+
+            <div className={s.trust}>
+               <span className={s.trust_item}>🔒 Secure Payment</span>
+               <span className={s.trust_item}>⚡ Instant Delivery</span>
+               <span className={s.trust_item}>✓ Buyer Protection</span>
+            </div>
+         </div>
+         {/* ══ LEFT ══ */}
+         <div className={s.cart_left}>
+            {/* Payment Methods — inline accordion */}
+
+
+            {/* Trust Perks */}
+            <div className={s.perks_grid}>
+               {PAYMENT_PERKS.map((i, index) => (
+                  <div key={index} className={s.perks_box}>
+                     <label className={s.perk_label}>{i.label}</label>
+                     <p className={s.perk_desc}>{i.desc}</p>
+                  </div>
+               ))}
+            </div>
+         </div>
+      </div>
+   );
+};
+
+export default Cart;

@@ -16,6 +16,7 @@ const useCart = (id) => {
             detail: {
                title: "Added to Cart",
                description: `${skin.weapon} | ${skin.name} — $${skin.price.toFixed(2)}`,
+               onClick: () =>  navigate('/cart')
             },
          })
       );

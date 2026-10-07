@@ -30,9 +30,9 @@
 }
 
 .header_left_title {
-   font-family: "Barlow Condensed", sans-serif;
+   font-family: var(--font-heading);
    font-size: 28px;
-   font-weight: 800;
+   font-weight: normal;
    letter-spacing: 0.06em;
    color: var(--text-primary);
    text-transform: uppercase;
@@ -387,16 +387,13 @@
       font-size: var(--font-xs);
    }
 
-   .view_more{
+   .view_more {
       font-size: var(--font-base);
    }
    .img_wrap {
       height: 120px !important;
    }
-
-
 }
-
 
 @media (max-width: 570px) {
    .card_container {
@@ -427,6 +424,18 @@
    .view_more {
       font-size: 14px;
       padding: 4px 10px;
+   }
+}
+
+@media (max-width: 460px) {
+   .trending_label {
+      top: 8px;
+      right: -14px;
+      font-family: var(--font-heading);
+      font-size: 8px;
+      padding: 4px 24px;
+      transform: rotate(45deg);
+      z-index: 20;
    }
 }
 

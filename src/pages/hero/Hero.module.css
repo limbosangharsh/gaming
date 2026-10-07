@@ -4,11 +4,11 @@
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
-   min-height: 85vh;
+   min-height: calc(100vh - 100px);
    font-family: var(--font-body);
    display: flex;
    align-items: center;
-   margin-top: 15vh;
+   margin-top: 100px;
    position: relative;
    overflow: hidden;
 }
@@ -289,7 +289,7 @@
 
    .ctaRow {
       gap: 10px;
-      width: 100%;
+      width: 60%;
    }
 
    .btnPrimary,
@@ -344,14 +344,15 @@
    }
 
    .ctaRow {
-      flex-direction: column;
+      /* flex-direction: column; */
       gap: 8px;
       width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
    }
 
    .btnPrimary,
    .btnGhost {
-      width: 100%;
       justify-content: center;
       height: 42px;
       font-size: 13px;

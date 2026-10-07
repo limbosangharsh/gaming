@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { allSkins } from "../../utils/constants/Constants";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,44 @@ export const useCartData = () => {
       quantity: item.quantity,
    }));
 
-const isCartEmpty = cartItems.length === 0;
+   const isCartEmpty = cartItems.length === 0;
+
+   const [initialItem, setInitialItem] = useState(cartItems[0]?.id ?? null);
+
+   const selectedItem = cartItems.find((item) => item.id === initialItem); // img filtering
+
+   const handleInitialItem = (id) => {
+      const item = cartItems.find((item) => item.id === id);
+
+      setInitialItem(id);
+
+      window.dispatchEvent(
+         new CustomEvent("initialItemChanged", {
+            detail: {
+               id,
+               item,
+            },
+         }),
+      );
+   };
+
+   useEffect(() => {
+      const handleChange = (event) => {
+         const { id, item } = event.detail;
+
+         setInitialItem(id);
+
+         console.log("Updated ID:", id);
+         console.log("Updated item:", item);
+      };
+
+      window.addEventListener("initialItemChanged", handleChange);
+
+      return () => {
+         window.removeEventListener("initialItemChanged", handleChange);
+      };
+   }, []);
+
    const syncCart = (updatedCart) => {
       setCartData(updatedCart);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -39,22 +76,39 @@ const isCartEmpty = cartItems.length === 0;
    };
 
    const handleRemoveFromCart = (id, setErrors) => {
-      let updatedCart = cartData.filter((item) => item.id !== id);
+      const updatedCart = cartData.filter((item) => item.id !== id);
+
+      // If the removed item was selected
+      if (initialItem === id) {
+         const nextSelectedItem = updatedCart[0];
+
+         setInitialItem(nextSelectedItem?.id ?? null);
+      }
+
       syncCart(updatedCart);
+
       window.dispatchEvent(
          new CustomEvent("showToast", {
             detail: {
-               title: "Remove from cart",
+               title: "Removed from cart",
                description: id,
             },
          }),
       );
+
       setErrors({});
    };
 
+
+   // console.log(selectedItem)
+   const handleNavigateCheckout = () => {
+      navigate("/checkout")
+      console.log('hello world ')
+   }
    const handlePlaceOrder = () => {
       if (isCartEmpty) return;
       setLoading(true);
+      navigate("/checkout");
 
       setTimeout(() => {
          setLoading(false);
@@ -104,10 +158,8 @@ const isCartEmpty = cartItems.length === 0;
             JSON.stringify([...existing, newOrder]),
          );
          syncCart([]);
-      }, 1000);
+      }, 6000);
    };
-
-   console.log("is Cart Empty ", isCartEmpty);
 
    return {
       cartData,
@@ -118,5 +170,9 @@ const isCartEmpty = cartItems.length === 0;
       isCartEmpty,
       handlePlaceOrder,
       loading,
+      initialItem,
+      handleInitialItem,
+      selectedItem,
+      handleNavigateCheckout
    };
 };
