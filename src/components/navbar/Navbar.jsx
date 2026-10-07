@@ -241,17 +241,17 @@ const Navbar = () => {
                   <BreadCrumb />
                </span>
 
-               {location.pathname.startsWith("/store") && (
-                  <span
-                     className={`${s.filterIcon} ${
-                        openSidebar ? s.activeFilter : ""
-                     }`}
-                     onClick={toggleSidebar}
-                  >
-                     {/* <span>Filters</span> */}
-                     <Icon name="filterIcon" size={20} />
-                  </span>
-               )}
+               {location.pathname.startsWith("/store") &&
+                  !location.pathname.startsWith("/store/item/") && (
+                     <span
+                        className={`${s.filterIcon} ${
+                           openSidebar ? s.activeFilter : ""
+                        }`}
+                        onClick={toggleSidebar}
+                     >
+                        <Icon name="filterIcon" size={20} />
+                     </span>
+                  )}
             </div>
          )}
 

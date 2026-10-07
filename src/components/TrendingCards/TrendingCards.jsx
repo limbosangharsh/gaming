@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const Carousel = CarouselModule.default || CarouselModule;
 import "react-loading-skeleton/dist/skeleton.css";
 import CardSkeleton from "../../utils/skeleton/Skelton";
+
 const renderStars = (rating) => {
    return Array.from({ length: 5 }, (_, i) => (
       <Icon

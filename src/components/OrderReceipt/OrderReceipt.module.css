@@ -179,11 +179,12 @@
       transform 150ms;
 }
 
-.checkout_btn:hover {
-   background: var(--accent-cyan-hover);
-   transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .checkout_btn:hover {
+    background: var(--accent-cyan-hover);
+    transform: translateY(-1px);
+  }
 }
-
 .checkout_btn_disabled {
    opacity: 0.4;
    pointer-events: none;
@@ -324,7 +325,7 @@
 .qty_val {
    width: 26px;
    text-align: center;
-   font-family: "Barlow Condensed", sans-serif;
+   font-family: var(--font-heading);
    font-size: 13px;
    font-weight: 700;
    color: var(--text-primary);
@@ -419,6 +420,8 @@
    .receipt_row_right {
       gap: 10px;
    }
+
+
 }
 
 @media (max-width: 420px) {

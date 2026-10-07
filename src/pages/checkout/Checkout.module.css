@@ -26,7 +26,7 @@
 
 .payment_title {
    font-family: var(--font-heading);
-   font-size: 14px;
+   font-size: var(--font-base);
    font-weight: 700;
    letter-spacing: 0.1em;
    text-transform: uppercase;
@@ -105,7 +105,7 @@
 
 .payment_label {
    font-family: var(--font-heading);
-   font-size: 13px;
+   font-size: var(--font-sm);
    font-weight: normal;
    color: var(--text-primary);
    letter-spacing: 0.04em;
@@ -113,7 +113,7 @@
 
 .payment_sub {
    font-family: var(--font-body);
-   font-size: 10px;
+   font-size: var(--font-xs);
    color: var(--text-dimmed);
 }
 
@@ -163,7 +163,7 @@
 
 .crypto_label {
    font-family: var(--font-body);
-   font-size: 11px;
+   font-size: var(--font-sm);
    color: var(--text-dimmed);
    text-transform: uppercase;
    letter-spacing: 0.06em;
@@ -182,7 +182,7 @@
 
 .crypto_addr_text {
    font-family: var(--font-body);
-   font-size: 11px;
+   font-size: var(--font-sm);
    color: var(--text-primary);
    white-space: nowrap;
    overflow: hidden;
@@ -195,7 +195,7 @@
    border-radius: 4px;
    color: var(--accent-cyan);
    font-family: var(--font-heading);
-   font-size: 11px;
+   font-size: var(--font-sm);
    font-weight: 700;
    letter-spacing: 0.06em;
    padding: 4px 10px;
@@ -214,7 +214,7 @@
 
 .crypto_amount {
    font-family: var(--font-heading);
-   font-size: 13px;
+   font-size: var(--font-base);
    font-weight: 700;
    color: var(--accent-cyan);
 }
@@ -259,7 +259,7 @@
    border-radius: 4px;
    color: var(--text-dimmed);
    font-family: var(--font-heading);
-   font-size: 11px;
+   font-size: var(--font-sm);
    font-weight: 700;
    letter-spacing: 0.06em;
    padding: 5px 14px;
@@ -293,13 +293,13 @@
 
 .crypto_info_label {
    font-family: var(--font-body);
-   font-size: 11px;
+   font-size: var(--font-sm);
    color: var(--text-dimmed);
 }
 
 .crypto_info_val {
    font-family: var(--font-heading);
-   font-size: 11px;
+   font-size: var(--font-sm);
    font-weight: 700;
    color: var(--text-primary);
 }
@@ -325,20 +325,20 @@
 
 .paypal_info_label {
    font-family: var(--font-body);
-   font-size: 11px;
+   font-size: var(--font-sm);
    color: var(--text-dimmed);
 }
 
 .paypal_info_val {
    font-family: var(--font-heading);
-   font-size: 11px;
+   font-size: var(--font-sm);
    font-weight: 700;
    color: var(--text-primary);
 }
 
 .paypal_note {
    font-family: var(--font-body);
-   font-size: 10px;
+   font-size: var(--font-xs);
    color: var(--text-dimmed);
    line-height: 1.5;
    margin: 0;
@@ -355,7 +355,7 @@
 
 .payment_desc {
    font-family: var(--font-body);
-   font-size: 11px;
+   font-size: var(--font-sm);
    color: var(--text-dimmed);
    line-height: 1.7;
    margin: 0;
@@ -409,7 +409,7 @@
 
 .paymentContent h2 {
    margin: 0;
-   font-size: 22px;
+   font-size: var(--font-xl);
    font-weight: 600;
 }
 
@@ -417,7 +417,7 @@
    margin: 8px 0 24px;
 
    color: #9ca3af;
-   font-size: 14px;
+   font-size: var(--font-base);
    line-height: 1.5;
 }
 
@@ -475,7 +475,7 @@
 }
 
 .processingIcon {
-   color: #0077ff;
+   color: var(--accent-cyan);
    margin-bottom: 16px;
 
    display: flex;
@@ -524,7 +524,7 @@
 
    .perk_label{
       background-color: red;
-      font-size: 12px;
+      font-size: var(--font-sm);
    }
 
    .hold_form{

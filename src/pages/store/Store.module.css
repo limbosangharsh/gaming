@@ -29,8 +29,8 @@
 }
 
 .sidebar_title {
-   font-family: "Barlow Condensed", sans-serif;
-   font-size: 16px;
+   font-family: var(--font-heading);
+   font-size: var(--font-md);
    font-weight: 800;
    letter-spacing: 0.1em;
    text-transform: uppercase;
@@ -81,8 +81,8 @@
 }
 
 .filter_label {
-   font-family: "Barlow Condensed", sans-serif;
-   font-size: 12px;
+   font-family: var(--font-heading);
+   font-size: var(--font-sm);
    font-weight: normal;
    letter-spacing: 0.12em;
    text-transform: uppercase;
@@ -98,8 +98,8 @@
    display: flex;
    align-items: center;
    gap: 8px;
-   font-family: "Inter", sans-serif;
-   font-size: 12px;
+   font-family: var(--font-body);
+   font-size: var(--font-sm);
    color: var(--text-muted);
    padding: 4px 10px;
    border-radius: 6px;
@@ -115,8 +115,8 @@
 }
 
 .checkbox_label {
-   font-family: "Inter", sans-serif;
-   font-size: 12px;
+   font-family: var(--font-body);
+   font-size: var(--font-sm);
    color: var(--text-muted);
    cursor: pointer;
    transition: color 150ms;
@@ -142,8 +142,8 @@
    border: 1px solid var(--border-subtle);
    border-radius: 6px;
    color: var(--text-dimmed);
-   font-family: "Barlow Condensed", sans-serif;
-   font-size: 12px;
+   font-family: var(--font-heading);
+   font-size: var(--font-sm);
    font-weight: 700;
    letter-spacing: 0.08em;
    text-transform: uppercase;
@@ -193,8 +193,8 @@
 }
 
 .results {
-   font-family: "Inter", sans-serif;
-   font-size: 13px;
+   font-family: var(--font-body);
+   font-size: var(--font-base);
    color: var(--text-dimmed);
 }
 
@@ -205,8 +205,8 @@
 }
 
 .sort_label {
-   font-family: "Inter", sans-serif;
-   font-size: 12px;
+   font-family: var(--font-body);
+   font-size: var(--font-sm);
    color: var(--text-dimmed);
 }
 
@@ -215,8 +215,8 @@
    border: 1px solid var(--border-subtle);
    border-radius: 6px;
    color: var(--text-primary);
-   font-family: "Inter", sans-serif;
-   font-size: 12px;
+   font-family: var(--font-body);
+   font-size: var(--font-sm);
    padding: 6px 12px;
    outline: none;
    cursor: pointer;
@@ -260,7 +260,7 @@
    align-items: center;
    justify-content: center;
    color: #000;
-   font-size: 10px;
+   font-size: var(--font-xs);
    font-weight: 700;
 }
 
@@ -275,7 +275,7 @@
    display: flex;
    align-items: center;
    gap: 8px;
-   font-size: 11px;
+   font-size: var(--font-sm);
    margin-top: 4px;
 }
 
@@ -299,8 +299,8 @@
 }
 
 .price_symbol {
-   font-family: "Inter", sans-serif;
-   font-size: 11px;
+   font-family: var(--font-body);
+   font-size: var(--font-sm);
    color: var(--text-dimmed);
    display: flex;
    align-items: center;
@@ -310,8 +310,8 @@
    background: transparent;
    border: none;
    outline: none;
-   font-family: "Inter", sans-serif;
-   font-size: 12px;
+   font-family: var(--font-body);
+   font-size: var(--font-sm);
    color: var(--text-primary);
    width: 100%;
 }
@@ -322,7 +322,7 @@
 }
 
 .price_separator {
-   font-size: 12px;
+   font-size: var(--font-sm);
    color: var(--text-dimmed);
    flex-shrink: 0;
    display: flex;
@@ -518,8 +518,6 @@
    .filter_group {
       margin-bottom: var(--space-2);
       padding-bottom: var(--space-2);
-
-      /* border: 1px solid red; */
    }
 
    .checkbox_label {
@@ -537,7 +535,7 @@
       height: calc(100vh - 82px);
    }
 
-   .page{
+   .page {
       margin-top: 82px;
    }
 }

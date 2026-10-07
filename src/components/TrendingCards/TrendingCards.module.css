@@ -6,15 +6,6 @@
    margin: 0 auto;
 }
 
-/* .container {
-  background-color: var(--bg-main);
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.1) 1px, 
-    transparent 1px
-  );
-  background-size: 16px 16px;
-} */
-
 .header {
    display: flex;
    justify-content: space-between;
@@ -31,7 +22,7 @@
 
 .header_left_title {
    font-family: var(--font-heading);
-   font-size: 28px;
+   font-size: var(--font-3xl);
    font-weight: normal;
    letter-spacing: 0.06em;
    color: var(--text-primary);
@@ -40,15 +31,15 @@
 }
 
 .header_left_subtitle {
-   font-family: "Inter", sans-serif;
-   font-size: 11px;
+   font-family: var(--font-body);
+   font-size: var(--font-sm);
    color: var(--text-dimmed);
    letter-spacing: 0.05em;
    text-transform: uppercase;
 }
 
 .view_more {
-   font-family: "Barlow Condensed", sans-serif;
+   font-family: var(--font-heading);
    font-size: 18px;
    font-weight: 700;
    letter-spacing: 0.08em;
@@ -171,8 +162,8 @@
 }
 
 .weapon {
-   font-family: "Inter", sans-serif;
-   font-size: 10px;
+   font-family: var(--font-body);
+   font-size: var(--font-xs);
    color: var(--text-dimmed);
    text-transform: uppercase;
    letter-spacing: 0.06em;
@@ -180,8 +171,8 @@
 }
 
 .name {
-   font-family: "Barlow Condensed", sans-serif;
-   font-size: 22px;
+   font-family: var(--font-heading);
+   font-size: var(--font-xl);
    font-weight: 700;
    color: var(--text-primary);
    letter-spacing: 0.02em;
@@ -209,15 +200,15 @@
 
 .rating_val {
    color: var(--text-primary);
-   font-family: "Inter", sans-serif;
-   font-size: 9px;
+   font-family: var(--font-body);
+   font-size: var(--font-xs);
    font-weight: 600;
    padding: 0px 0px 0px 4px;
 }
 
 .condition {
-   font-family: "Inter", sans-serif;
-   font-size: 9px;
+   font-family: var(--font-body);
+   font-size: var(--font-xs);
    font-weight: 600;
    padding: 2px 6px;
    border-radius: 3px;
@@ -227,8 +218,8 @@
 }
 
 .st {
-   font-family: "Barlow Condensed", sans-serif;
-   font-size: 9px;
+   font-family: var(--font-heading);
+   font-size: var(--font-xs);
    font-weight: 700;
    letter-spacing: 0.06em;
    color: #f97316;
@@ -260,8 +251,8 @@
 }
 
 .float_val {
-   font-family: "Inter", sans-serif;
-   font-size: 10px;
+   font-family: var(--font-body);
+   font-size: var(--font-xs);
    color: var(--text-dimmed);
    white-space: nowrap;
 }
@@ -274,8 +265,8 @@
 }
 
 .price {
-   font-family: "Barlow Condensed", sans-serif;
-   font-size: 26px;
+   font-family: var(--font-heading);
+   font-size: var(--font-3xl);
    font-weight: 800;
    color: var(--accent-cyan);
    letter-spacing: 0.04em;
@@ -283,15 +274,15 @@
 }
 
 .original {
-   font-family: "Inter", sans-serif;
-   font-size: 11px;
+   font-family: var(--font-body);
+   font-size: var(--font-sm);
    color: var(--text-dimmed);
    text-decoration: line-through;
 }
 
 .discount {
-   font-family: "Barlow Condensed", sans-serif;
-   font-size: 11px;
+   font-family: var(--font-heading);
+   font-size: var(--font-sm);
    font-weight: 700;
    color: #22c55e;
    background: rgba(34, 197, 94, 0.1);
@@ -307,8 +298,8 @@
    right: -22px;
    background: var(--rarity-color);
    color: #000;
-   font-family: "Barlow Condensed", sans-serif;
-   font-size: 10px;
+   font-family: var(--font-heading);
+   font-size: var(--font-xs);
    font-weight: 800;
    letter-spacing: 0.1em;
    padding: 4px 36px;
@@ -410,19 +401,19 @@
    }
 
    .name {
-      font-size: 18px;
+      font-size: var(--font-lg);
    }
 
    .price {
-      font-size: 20px;
+      font-size: var(--font-xl);
    }
 
    .header_left_title {
-      font-size: 20px;
+      font-size: var(--font-xl);
    }
 
    .view_more {
-      font-size: 14px;
+      font-size: var(--font-base);
       padding: 4px 10px;
    }
 }
@@ -458,23 +449,23 @@
    }
 
    .name {
-      font-size: 15px;
+      font-size: var(--font-md);
    }
 
    .price {
-      font-size: 17px;
+      font-size: var(--font-lg);
    }
 
    .weapon {
-      font-size: 9px;
+      font-size: var(--font-xs);
    }
 
    .header_left_title {
-      font-size: 18px;
+      font-size: var(--font-lg);
    }
 
    .view_more {
-      font-size: 13px;
+      font-size: var(--font-base);
       padding: 3px 8px;
    }
 }
@@ -498,15 +489,15 @@
    }
 
    .name {
-      font-size: 13px;
+      font-size: var(--font-base);
    }
 
    .price {
-      font-size: 15px;
+      font-size: var(--font-md);
    }
 
    .discount {
-      font-size: 9px;
+      font-size: var(--font-xs);
       padding: 1px 4px;
    }
 
@@ -515,11 +506,11 @@
    }
 
    .header_left_title {
-      font-size: 16px;
+      font-size: var(--font-md);
    }
 
    .view_more {
-      font-size: 12px;
+      font-size: var(--font-sm);
       padding: 3px 6px;
    }
 }
