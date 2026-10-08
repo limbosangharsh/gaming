@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Hero.module.css";
 import AnimatedNumber from "../../utils/animatedNumber/AnimatedNumber";
 
+import { Link } from "react-router-dom";
 const Hero = () => {
    return (
       <section className={s.hero}>
@@ -31,10 +32,11 @@ const Hero = () => {
                </p>
 
                <div className={s.ctaRow}>
-                  <a href="/store" className={s.btnPrimary}>
+                  <Link to="/store" className={s.btnPrimary}>
                      Browse Market
-                  </a>
-                  <a href="/signup" className={s.btnGhost}>
+                  </Link>
+
+                  <Link to="/signup" className={s.btnGhost}>
                      Connect Steam
                      <svg className={s.arrow} viewBox="0 0 16 16" fill="none">
                         <path
@@ -45,7 +47,7 @@ const Hero = () => {
                            strokeLinejoin="round"
                         />
                      </svg>
-                  </a>
+                  </Link>
                </div>
 
                <div className={s.stats}>
