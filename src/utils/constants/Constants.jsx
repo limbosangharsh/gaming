@@ -1266,22 +1266,20 @@ export const NavHeaders = [
    { id: 1, label: "Home", path: "/" },
    { id: 2, label: "Store", path: "/store" },
    { id: 4, label: "Orders", path: "/orders" },
-   // { id: 4, label: "Contact Us", path: "/contact-us" },
+   // { id: 4, label: "Contact Us", path: "" },
 ];
 
 // --Footer Links ------
 export const FooterQuickLinks = [
-   { label: "Browse Market", href: "/browse" },
-   { label: "Sell Skins", href: "/sell" },
-   { label: "How It Works", href: "/how-it-works" },
-   { label: "Blog", href: "/blog" },
-   { label: "Support", href: "/support" },
+   { label: "Browse Market", href: "/store", key: 1 },
+   { label: "Sell Skins", href: "/store", key: 2 },
+   { label: "Support", href: "/store", key: 3 },
 ];
 
 export const FooterLegalLinks = [
    { label: "Privacy Policy", href: "/privacy" },
    { label: "Terms of Service", href: "/terms" },
-   { label: "Cookie Policy", href: "/cookies" },
+   // { label: "Cookie Policy", href: "/cookies" },
    { label: "About Us", href: "/about" },
 ];
 
@@ -1292,12 +1290,10 @@ export const FooterStatsLinks = [
 ];
 
 export const FooterCategories = [
-   "Rifles",
-   "Knives",
-   "Pistols",
-   "Gloves",
-   "Snipers",
-   "SMGs",
+   { value: "Rifles", href: "/rifle" },
+   { value: "Knives", href: "/knife" },
+   { value: "Gloves", href: "/gloves" },
+   { value: "Snipers", href: "/sniper" },
 ];
 
 export const allSkins = [...ak47, ...knives, ...snipers, ...gloves];
@@ -1438,7 +1434,6 @@ export const STATIC_ORDERS = [
                "https://res.cloudinary.com/wos7zsyn/image/upload/v1787206516/4-2.png",
             ],
          },
-
       ],
       total: 1860,
       placedAt: "2026-09-05T09:49:13.307Z",
@@ -1475,14 +1470,12 @@ export const STATIC_ORDERS = [
                "https://res.cloudinary.com/wos7zsyn/image/upload/v1787210440/17-2.png",
             ],
          },
-
       ],
       total: 13080,
       placedAt: "2026-09-07T12:33:12.954Z",
       status: "delivering",
    },
 ];
-
 
 export const MOCK_ORDERS = [
    {

@@ -71,25 +71,63 @@ export const useAuthForm = () => {
 
    const handleSubmit = () => {
       const allErrors = validateAll(fieldsToValidate);
+
       setErrors(allErrors);
 
       if (!isFormValid(allErrors)) return;
 
       if (isSignup) {
-         localStorage.setItem(
-            "skinvault_user",
-            JSON.stringify({
-               firstName: formData.firstName,
-               lastName: formData.lastName,
-               contact: formData.contact,
-               country: formData.country,
-               email: formData.email,
-            }),
+         // Get existing users
+         const existingUsers = JSON.parse(
+            localStorage.getItem("skinvault_users") || "[]",
          );
+
+         // Check if email is already registered
+         const userExists = existingUsers.some(
+            (user) => user.email === formData.email,
+         );
+
+         if (userExists) {
+            setErrors({
+               email: "An account already exists with this email.",
+            });
+
+            window.dispatchEvent(
+               new CustomEvent("showToast", {
+                  detail: {
+                     title: "Account already exists",
+                     description:
+                        "An account is already registered with this email.",
+                  },
+               }),
+            );
+
+            return;
+         }
+
+         // Create new user
+         const newUser = {
+            id: Date.now(),
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            contact: formData.contact,
+            country: formData.country,
+            email: formData.email,
+            password: formData.password,
+         };
+
+         // Add new user to existing users
+         const updatedUsers = [...existingUsers, newUser];
+
+         localStorage.setItem("skinvault_users", JSON.stringify(updatedUsers));
+
          setLoading(true);
+
          setTimeout(() => {
             navigate("/signin");
+
             setLoading(false);
+
             window.dispatchEvent(
                new CustomEvent("showToast", {
                   detail: {
@@ -100,18 +138,63 @@ export const useAuthForm = () => {
             );
          }, 2000);
       } else {
-         localStorage.setItem(
-            "skinvault_user",
-            JSON.stringify({ email: formData.email }),
+         // Get ALL registered users
+         const existingUsers = JSON.parse(
+            localStorage.getItem("skinvault_users") || "[]",
          );
-         const getOrders = localStorage.setItem(
-            // only on login
-            "orders",
-            JSON.stringify(STATIC_ORDERS),
+
+         // Find user by email
+         const storedUser = existingUsers.find(
+            (user) => user.email === formData.email,
          );
+
+         // User doesn't exist
+         if (!storedUser) {
+            setErrors({
+               email: "No account found with this email.",
+            });
+
+            window.dispatchEvent(
+               new CustomEvent("showToast", {
+                  detail: {
+                     title: "Account not found",
+                     description: "No account exists with this email address.",
+                  },
+               }),
+            );
+
+            return;
+         }
+
+         // Checking password
+         if (storedUser.password !== formData.password) {
+            setErrors({
+               password: "Incorrect password.",
+            });
+
+            window.dispatchEvent(
+               new CustomEvent("showToast", {
+                  detail: {
+                     title: "Incorrect password",
+                     description:
+                        "The password you entered is incorrect. Please try again.",
+                  },
+               }),
+            );
+
+            return;
+         }
+
+         // Login successful
          setLoading(true);
+
+         localStorage.setItem("logged_user", JSON.stringify(storedUser)); // current logged in user
+
+         localStorage.setItem("orders", JSON.stringify(STATIC_ORDERS));
+
          setTimeout(() => {
             navigate("/");
+
             setLoading(false);
 
             window.dispatchEvent(

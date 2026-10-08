@@ -2,23 +2,26 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const useCart = (id) => {
+const useCart = (id = null) => {
    const navigate = useNavigate();
    const timerRef = useRef(null);
    const [animateCart, setAnimateCart] = useState(false);
 
    const addToCart = (skin, quantity) => {
-      const user = localStorage.getItem("skinvault_user");
-      if (!user) { navigate("/signin"); return; }
+      const user = localStorage.getItem("logged_user");
+      if (!user) {
+         navigate("/signin");
+         return;
+      }
 
       window.dispatchEvent(
          new CustomEvent("showToast", {
             detail: {
                title: "Added to Cart",
                description: `${skin.weapon} | ${skin.name} — $${skin.price.toFixed(2)}`,
-               onClick: () =>  navigate('/cart')
+               onClick: () => navigate("/cart"),
             },
-         })
+         }),
       );
 
       const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -28,7 +31,7 @@ const useCart = (id) => {
          ? cart.map((item) =>
               item.id === skin.id
                  ? { ...item, quantity: item.quantity + quantity }
-                 : item
+                 : item,
            )
          : [...cart, { id: skin.id, quantity }];
 
@@ -40,8 +43,13 @@ const useCart = (id) => {
    };
 
    useEffect(() => {
+      if (!id) return;
+
       setAnimateCart(false);
-      if (timerRef.current) clearTimeout(timerRef.current);
+
+      if (timerRef.current) {
+         clearTimeout(timerRef.current);
+      }
    }, [id]);
 
    return { animateCart, addToCart };

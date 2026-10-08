@@ -26,6 +26,21 @@ const Home = () => {
       return () => window.removeEventListener("resize", handleResize);
    }, []);
 
+   const [showInitialSkeleton, setShowInitialSkeleton] = useState(
+      () => !sessionStorage.getItem("firstTimeLoading"),
+   );
+
+   useEffect(() => {
+      if (!showInitialSkeleton) return;
+
+      const timer = setTimeout(() => {
+         sessionStorage.setItem("firstTimeLoading", "true");
+         setShowInitialSkeleton(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+   }, [showInitialSkeleton]);
+
    return (
       <>
          <Hero />
@@ -40,7 +55,7 @@ const Home = () => {
                autoPlay={true}
                pageSize={5}
                autoPlaySpeed={2000}
-               loadingTimer={5000}
+               loading={showInitialSkeleton}
                mobileSize={1}
             />
             <TrendingCards
@@ -57,7 +72,7 @@ const Home = () => {
                showViewMore={true}
                viewMoreLink="/store/sniper"
                img_height="200px"
-               loadingTimer={0}
+               loading={showInitialSkeleton}
                autoPlay={screenSize !== "desktop"}
                autoPlaySpeed={10000}
             />
@@ -69,7 +84,7 @@ const Home = () => {
                viewMoreLink="/store/rifle"
                autoPlay={true}
                pageSize={4}
-               loadingTimer={0}
+               loading={showInitialSkeleton}
             />
             <TrendingCards
                skins={gloves}
@@ -80,7 +95,7 @@ const Home = () => {
                autoPlay={true}
                pageSize={4}
                img_height="190px"
-               loadingTimer={0}
+               loading={showInitialSkeleton}
             />
          </div>
          <WhyUs />

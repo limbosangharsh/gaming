@@ -110,7 +110,7 @@ const Checkout = () => {
 
                               <div className={s.payment_header_row}>
                                  <div className={s.payment_icon_wrap}>
-                                    <Icon name={method.icon} size={18} />
+                                    <Icon name={method.icon} size={24} />
                                  </div>
 
                                  <div className={s.payment_info}>

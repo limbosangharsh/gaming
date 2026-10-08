@@ -33,7 +33,7 @@ const Orders = () => {
       setSelectedOrder(null);
    };
 
-   const getUser = JSON.parse(localStorage.getItem("skinvault_user"));
+   const getUser = JSON.parse(localStorage.getItem("logged_user"));
 
    const [search, setSearch] = useState("");
 
@@ -72,10 +72,10 @@ const Orders = () => {
          {/* ══ HEADER ══ */}
          <div className={s.profile}>
             <div className={s.profile_info_container}>
-               <span className={s.initial}>{getUser.email[0]}</span>
+               <span className={s.initial}>{getUser?.email[0]}</span>
                <div className={s.hold_names}>
                   <div className={s.emailtradecontainer}>
-                     <span className={s.email}>{getUser.email}</span>
+                     <span className={s.email}>{getUser?.email}</span>
                   </div>
                </div>
             </div>
@@ -168,7 +168,7 @@ const Orders = () => {
                                  className={s.modal_btn}
                                  onClick={() => handleOpenModal(order)}
                               >
-                                    +{order.items.length - 1}
+                                 +{order.items.length - 1}
                               </div>
                            )}
                         </>

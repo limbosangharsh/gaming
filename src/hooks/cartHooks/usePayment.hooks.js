@@ -14,10 +14,10 @@ export const usePayment = () => {
    const [selectedCoin, setSelectedCoin] = useState("BTC");
 
    const [cardDetails, setCardDetails] = useState({
-      cardName: "John Doe",
-      cardNumber: "4242 4242 4242 4242",
-      cardExpiry: "12/30",
-      cardCvv: "123",
+      cardName: "",
+      cardNumber: "",
+      cardExpiry: "",
+      cardCvv: "",
    });
 
    const [paypalDetails, setPaypalDetails] = useState({

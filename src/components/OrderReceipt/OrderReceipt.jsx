@@ -159,46 +159,43 @@ const OrderReceipt = ({
                      <div className={s.receipt_row_right}>
                         {/* QUANTITY */}
                         <div className={s.quantity_ctrl}>
-                           {/* DECREMENT */}
-                           <button
-                              className={`${s.qty_btn} ${
-                                 item.quantity === 1 ||
-                                 disabledIncrementDecrement
-                                    ? s.qty_btn_disabled
-                                    : ""
-                              }`}
-                              onClick={(e) => {
-                                 e.stopPropagation();
-
-                                 handleDecrementQuantity?.(item.id);
-                              }}
-                              disabled={
-                                 disabledIncrementDecrement ||
-                                 item.quantity === 1
-                              }
-                           >
-                              <Icon name="removeIcon" size={12} />
-                           </button>
+                           {!disabledIncrementDecrement && (
+                              <>
+                                 {/* DECREMENT */}
+                                 <button
+                                    className={`${s.qty_btn} ${
+                                       item.quantity === 1
+                                          ? s.qty_btn_disabled
+                                          : ""
+                                    }`}
+                                    onClick={(e) => {
+                                       e.stopPropagation();
+                                       handleDecrementQuantity?.(item.id);
+                                    }}
+                                    disabled={item.quantity === 1}
+                                 >
+                                    <Icon name="removeIcon" size={12} />
+                                 </button>
+                              </>
+                           )}
 
                            {/* VALUE */}
                            <span className={s.qty_val}>{item.quantity}</span>
 
-                           {/* INCREMENT */}
-                           <button
-                              className={`${s.qty_btn} ${
-                                 disabledIncrementDecrement
-                                    ? s.qty_btn_disabled
-                                    : ""
-                              }`}
-                              onClick={(e) => {
-                                 e.stopPropagation();
-
-                                 handleIncrementQuantity?.(item.id);
-                              }}
-                              disabled={disabledIncrementDecrement}
-                           >
-                              <Icon name="addIcon" size={12} />
-                           </button>
+                           {!disabledIncrementDecrement && (
+                              <>
+                                 {/* INCREMENT */}
+                                 <button
+                                    className={s.qty_btn}
+                                    onClick={(e) => {
+                                       e.stopPropagation();
+                                       handleIncrementQuantity?.(item.id);
+                                    }}
+                                 >
+                                    <Icon name="addIcon" size={12} />
+                                 </button>
+                              </>
+                           )}
                         </div>
 
                         {/* PRICE */}

@@ -8,17 +8,105 @@ import { useLocation, useNavigate } from "react-router-dom";
 const Carousel = CarouselModule.default || CarouselModule;
 import "react-loading-skeleton/dist/skeleton.css";
 import CardSkeleton from "../../utils/skeleton/Skelton";
+import useCart from "../../hooks/viewItemHooks/useCart";
 
 const renderStars = (rating) => {
-   return Array.from({ length: 5 }, (_, i) => (
-      <Icon
-         key={i}
-         name="star"
-         size={12}
-         style={{ color: i < Math.floor(rating) ? "#f59e0b" : "#334155" }}
-      />
-   ));
+  const roundedRating = Math.round(rating * 2) / 2;
+
+  return Array.from({ length: 5 }, (_, i) => {
+    const starValue = i + 1;
+
+    const isFull = roundedRating >= starValue;
+    const isHalf =
+      roundedRating >= starValue - 0.5 &&
+      roundedRating < starValue;
+
+    return (
+      <span
+        key={i}
+        style={{
+          position: "relative",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "12px",
+          height: "12px",
+          lineHeight: 0,
+        }}
+      >
+        {/* Empty star */}
+        <Icon
+          name="star"
+          size={12}
+          style={{
+            color: "#334155",
+            display: "block",
+          }}
+        />
+
+        {/* Full star */}
+        {isFull && (
+          <span
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Icon
+              name="star"
+              size={12}
+              style={{
+                color: "#f59e0b",
+                display: "block",
+              }}
+            />
+          </span>
+        )}
+
+        {/* Half star */}
+        {isHalf && (
+          <span
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "50%",
+              height: "12px",
+              overflow: "hidden",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <span
+              style={{
+                width: "12px",
+                minWidth: "12px",
+                height: "12px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Icon
+                name="star"
+                size={12}
+                style={{
+                  color: "#f59e0b",
+                  display: "block",
+                }}
+              />
+            </span>
+          </span>
+        )}
+      </span>
+    );
+  });
 };
+
+
 const RARITY_COLOR = Object.fromEntries(rarities.map((r) => [r.id, r.color]));
 
 const TrendingCards = ({
@@ -37,10 +125,12 @@ const TrendingCards = ({
    cardContainerClass,
    showWeaponName = true,
    ShowWeaponSkin = true,
-   loadingTimer = 0,
    mobileSize = 2,
-   // loadingTimer = 5000,
+
+   loading = false,
 }) => {
+   const { addToCart } = useCart();
+
    const navigate = useNavigate();
    const location = useLocation();
    const responsive = {
@@ -58,14 +148,6 @@ const TrendingCards = ({
       },
    };
 
-   const [loading, setLoading] = useState(loadingTimer > 0);
-
-   useEffect(() => {
-      if (loadingTimer === 0) return;
-      const timer = setTimeout(() => setLoading(false), loadingTimer);
-      return () => clearTimeout(timer);
-   }, [loadingTimer]);
-
    const handleViewMoreRouting = () => {
       // console.log('click ', viewMoreLink)
       navigate(`${viewMoreLink}`);
@@ -76,69 +158,82 @@ const TrendingCards = ({
       navigate(`/store/item/${skin.id}`);
    };
 
-   const renderCard = (skin) => (
-      <div
-         key={skin.id}
-         className={s.card}
-         style={{ "--rarity-color": RARITY_COLOR[skin.rarity] ?? "#ffffff" }}
-         onClick={() => handleViewItem(skin)}
-      >
-         <div className={s.trending_label}>{skin.condition}</div>
-         <div className={s.card_body}>
-            {showWeaponName && <label className={s.name}>{skin.name}</label>}
-            {ShowWeaponSkin && (
-               <label className={s.weapon}>{skin.weapon}</label>
-            )}
-            <div
-               className={`${s.img_wrap} ${location.pathname.includes("/store") ? s.img_wrap_store : autoPlay ? s.carousal_img_wrap : ""}`}
-               style={{
-                  height: img_height,
-               }}
-            >
-               <img
-                  src={skin.image[0]}
-                  alt={`${skin.weapon} ${skin.name}`}
-                  loading="lazy"
-                  className={`${s.card_img} ${skin.category === "gloves" ? s.card_img_gloves : ""}`}
-               />
-            </div>
-            <div className={s.meta}>
-               <div className={s.meta_left}>
-                  <span className={s.condition}>{skin.condition}</span>
-                  {skin.stattrak && <span className={s.st}>ST</span>}
+   const renderCard = (skin) => {
+      return (
+         <div
+            key={skin.id}
+            className={s.card}
+            style={{ "--rarity-color": RARITY_COLOR[skin.rarity] ?? "#ffffff" }}
+            onClick={() => handleViewItem(skin)}
+         >
+            <div className={s.trending_label}>{skin.condition}</div>
+            <div className={s.card_body}>
+               {showWeaponName && <label className={s.name}>{skin.name}</label>}
+               {ShowWeaponSkin && (
+                  <label className={s.weapon}>{skin.weapon}</label>
+               )}
+               <div
+                  className={`${s.img_wrap} ${location.pathname.includes("/store") ? s.img_wrap_store : autoPlay ? s.carousal_img_wrap : ""}`}
+                  style={{
+                     height: img_height,
+                  }}
+               >
+                  <img
+                     src={skin.image[0]}
+                     alt={`${skin.weapon} ${skin.name}`}
+                     loading="lazy"
+                     className={`${s.card_img} ${skin.category === "gloves" ? s.card_img_gloves : ""}`}
+                  />
+                  {/* <button
+                     className={s.add_to_cart}
+                     onClick={(e) => {
+                        addToCart(skin, 1);
+                        // console.log(skin)
+                        e.stopPropagation();
+                     }}
+                  >
+                     <Icon name="cart" size={16} />
+                     Add to Cart
+                  </button> */}
                </div>
-               <div className={s.stars}>
-                  {renderStars(skin.rating)}
-                  <span className={s.rating_val}>{skin.rating}</span>
-               </div>
-            </div>
-            {showFloatBar && (
-               <div className={s.float_row}>
-                  <div className={s.float_bar}>
-                     <div
-                        className={s.float_fill}
-                        style={{ width: `${skin.float * 100}%` }}
-                     />
+               <div className={s.meta}>
+                  <div className={s.meta_left}>
+                     <span className={s.condition}>{skin.condition}</span>
+                     {skin.stattrak && <span className={s.st}>ST</span>}
                   </div>
-                  <span className={s.float_val}>{skin.float}</span>
+                  <div className={s.stars}>
+                     {renderStars(skin.rating)}
+                     <span className={s.rating_val}>{skin.rating}</span>
+                  </div>
                </div>
-            )}
-            {showPrice && (
-               <div className={s.price_row}>
-                  <span className={s.price}>${skin.price.toFixed(2)}</span>
-                  {skin.discount > 0 && (
-                     <>
-                        <span className={s.original}>
-                           ${skin.originalPrice.toFixed(2)}
-                        </span>
-                        <span className={s.discount}>-{skin.discount}%</span>
-                     </>
-                  )}
-               </div>
-            )}
+               {showFloatBar && (
+                  <div className={s.float_row}>
+                     <div className={s.float_bar}>
+                        <div
+                           className={s.float_fill}
+                           style={{ width: `${skin.float * 100}%` }}
+                        />
+                     </div>
+                     <span className={s.float_val}>{skin.float}</span>
+                  </div>
+               )}
+               {showPrice && (
+                  <div className={s.price_row}>
+                     <span className={s.price}>${skin.price.toFixed(2)}</span>
+                     {skin.discount > 0 && (
+                        <>
+                           <span className={s.original}>
+                              ${skin.originalPrice.toFixed(2)}
+                           </span>
+                           <span className={s.discount}>-{skin.discount}%</span>
+                        </>
+                     )}
+                  </div>
+               )}
+            </div>
          </div>
-      </div>
-   );
+      );
+   };
 
    return (
       <div className={s.container}>

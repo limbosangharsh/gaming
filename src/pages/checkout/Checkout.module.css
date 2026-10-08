@@ -105,7 +105,7 @@
 
 .payment_label {
    font-family: var(--font-heading);
-   font-size: var(--font-sm);
+   font-size: var(--font-md);
    font-weight: normal;
    color: var(--text-primary);
    letter-spacing: 0.04em;
@@ -113,7 +113,7 @@
 
 .payment_sub {
    font-family: var(--font-body);
-   font-size: var(--font-xs);
+   font-size: var(--font-sm);
    color: var(--text-dimmed);
 }
 
@@ -552,6 +552,14 @@
    .page{
       margin-top: 50px;
    }
+
+.payment_label {
+   font-size: var(--font-md);
+}
+
+.payment_sub{
+   font-size: var(--font-xs);
+}
 
  
 }

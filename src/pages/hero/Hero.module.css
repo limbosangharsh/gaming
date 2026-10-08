@@ -148,7 +148,7 @@
 }
 .btnPrimary:hover {
    background: var(--accent-cyan-hover);
-   transform: translateY(-1px);
+   /* transform: translateY(-1px); */
 }
 
 .btnGhost {
@@ -289,14 +289,18 @@
 
    .ctaRow {
       gap: 10px;
-      width: 60%;
-   }
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: min-content;
+      }
 
    .btnPrimary,
    .btnGhost {
       justify-content: center;
       height: 44px;
       font-size: 14px;
+      width: min-content;
+      white-space: nowrap;
    }
 }
 
@@ -346,8 +350,8 @@
    .ctaRow {
       /* flex-direction: column; */
       gap: 8px;
-      width: 100%;
       display: grid;
+      width: min-content;
       grid-template-columns: 1fr 1fr;
    }
 
