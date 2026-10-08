@@ -200,7 +200,8 @@ const OrderReceipt = ({
 
                         {/* PRICE */}
                         <span className={s.receipt_price}>
-                           ${item.price.toFixed(2)}
+                           {/* ${item.price.toFixed(2)} */}
+                           ${item.quantity * item.price.toFixed(2)}
                         </span>
 
                         {/* REMOVE */}

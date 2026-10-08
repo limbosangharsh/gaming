@@ -33,6 +33,7 @@ const ViewItem = () => {
 
    if (!skin) return <div>Skin not found</div>;
 
+   const totalPriceAfterQuantiy = skin.price.toFixed(2) * quantity
    // console.log(animateCart)
    return (
       <div className={s.wrapper}>
@@ -165,7 +166,7 @@ const ViewItem = () => {
                <div className={s.divider} />
 
                <div className={s.price_wrap}>
-                  <span className={s.price}>${skin.price.toFixed(2)}</span>
+                  <span className={s.price}>${totalPriceAfterQuantiy}</span>
                   {skin.discount > 0 && (
                      <div className={s.price_meta}>
                         <span className={s.original}>
