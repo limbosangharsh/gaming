@@ -123,59 +123,56 @@ const Footer = () => {
                </ul>
             </div>
          </div>
+         <CustomModal
+            isOpen={supportModal}
+            onClose={() => setSupportModal(false)}
+            title="Support"
+            subTitle="We're here to help"
+         >
+            <div className={s.support_content}>
+               <div className={s.support_intro}>
+                  <h3>How can we help?</h3>
+                  <p>
+                     Our support team is here to help with your SkinVault
+                     account, purchases, sales, and other marketplace-related
+                     questions. Whether you need help with your profile, Steam
+                     account, payment, or an order, we're happy to assist.
+                  </p>
+               </div>
 
-<CustomModal
-  isOpen={supportModal}
-  onClose={() => setSupportModal(false)}
-  title="Support"
-  subTitle="We're here to help"
->
-  <div className={s.support_content}>
-    <div className={s.support_intro}>
-      <h3>How can we help?</h3>
-      <p>
-        Our support team is here to help with your SkinVault account,
-        purchases, sales, and other marketplace-related questions.
-        Whether you need help with your profile, Steam account,
-        payment, or an order, we're happy to assist.
-      </p>
-    </div>
+               <div className={s.support_email}>
+                  <span className={s.support_label}>Support Email</span>
+                  <a
+                     href="mailto:support@skinvault.com"
+                     className={s.support_email_link}
+                  >
+                     support@skinvault.com
+                  </a>
+               </div>
 
-    <div className={s.support_email}>
-      <span className={s.support_label}>Support Email</span>
-      <a
-        href="mailto:support@skinvault.com"
-        className={s.support_email_link}
-      >
-        support@skinvault.com
-      </a>
-    </div>
+               <div className={s.support_contact}>
+                  <h3>Account & Payments</h3>
+                  <p>
+                     For account-related requests, we may need to verify details
+                     such as your first name, last name, email address, Steam
+                     information, or order details. For payment-related issues,
+                     our team can also assist with card and PayPal transactions.
+                  </p>
+               </div>
 
-    <div className={s.support_contact}>
-      <h3>Account & Payments</h3>
-      <p>
-        For account-related requests, we may need to verify details
-        such as your first name, last name, email address, Steam
-        information, or order details. For payment-related issues,
-        our team can also assist with card and PayPal transactions.
-      </p>
-    </div>
+               <p className={s.support_response}>
+                  For faster assistance, please include your order ID and a
+                  brief description of the issue you're experiencing.
+               </p>
 
-    <p className={s.support_response}>
-      For faster assistance, please include your order ID and a brief
-      description of the issue you're experiencing.
-    </p>
-
-    <a
-      href="mailto:support@skinvault.com"
-      className={s.support_button}
-    >
-      Contact Support
-    </a>
-  </div>
-</CustomModal>
-
-
+               <a
+                  href="mailto:support@skinvault.com"
+                  className={s.support_button}
+               >
+                  Contact Support
+               </a>
+            </div>
+         </CustomModal>
          <CustomModal
             isOpen={privacyModal}
             onClose={() => setPrivacyModal(false)}
@@ -275,183 +272,262 @@ const Footer = () => {
                </div>
             </div>
          </CustomModal>
-
          <CustomModal
             isOpen={termsModal}
             onClose={() => setTermsModal(false)}
             title="Terms of Service"
-            subTitle="The rules and conditions for using SkinVault"
+            subTitle="The terms and conditions governing your use of SkinVault"
          >
             <div className={s.legal_content}>
                <section>
                   <h3>1. Acceptance of Terms</h3>
                   <p>
-                     By creating an account or using SkinVault, you agree to
-                     these Terms of Service. If you do not agree with these
-                     terms, you should not use the SkinVault platform.
+                     By creating an account, accessing, or using SkinVault, you
+                     agree to be bound by these Terms of Service and any
+                     applicable policies referenced on the platform. If you do
+                     not agree with these terms, please do not use SkinVault.
                   </p>
                </section>
 
                <section>
                   <h3>2. About SkinVault</h3>
                   <p>
-                     SkinVault is an online marketplace designed to facilitate
-                     the buying and selling of Counter-Strike 2 (CS2) skins and
-                     related virtual items. SkinVault is not affiliated with,
-                     endorsed by, or sponsored by Valve Corporation or Steam.
+                     SkinVault is an online marketplace operated by BEMI PRIME
+                     LTD, registered at 128 City Road, London, EC1V 2NX. The
+                     platform provides users with access to supported
+                     Counter-Strike 2 skins and related digital items for
+                     purchase and sale.
+                  </p>
+                  <p>
+                     SkinVault is an independent platform and is not affiliated
+                     with, endorsed by, or sponsored by Valve Corporation or
+                     Steam.
                   </p>
                </section>
 
                <section>
-                  <h3>3. User Accounts</h3>
+                  <h3>3. Eligibility</h3>
+                  <p>
+                     You must meet the minimum age and legal requirements
+                     applicable in your country or region to use SkinVault. By
+                     using the platform, you confirm that you are legally
+                     permitted to enter into transactions involving the services
+                     and digital items offered through SkinVault.
+                  </p>
+               </section>
+
+               <section>
+                  <h3>4. User Accounts</h3>
+                  <p>
+                     You are responsible for providing accurate and current
+                     information when creating and maintaining your SkinVault
+                     account. This may include information such as your name,
+                     email address, and Steam account details where required for
+                     the use of marketplace services.
+                  </p>
                   <p>
                      You are responsible for maintaining the security of your
-                     SkinVault account and for all activity performed through
-                     your account. You agree to provide accurate information and
-                     must not create an account for fraudulent or unlawful
-                     purposes.
+                     account and for activity carried out through it. You must
+                     not share your credentials or use another person's account
+                     without authorization.
                   </p>
                </section>
 
                <section>
-                  <h3>4. Buying and Selling Skins</h3>
+                  <h3>5. Buying and Selling Skins</h3>
                   <p>
-                     Users may use SkinVault to purchase or sell supported CS2
-                     skins and virtual items. Prices may change based on market
-                     conditions, item availability, and other factors.
+                     SkinVault allows eligible users to purchase and, where
+                     supported, sell Counter-Strike 2 skins and other supported
+                     digital items. Product availability, pricing, and
+                     transaction status may change based on marketplace
+                     conditions and item availability.
                   </p>
                   <p>
-                     A transaction may be subject to verification before it is
-                     considered complete. SkinVault reserves the right to cancel
-                     or reject a transaction when necessary to protect users or
-                     the platform.
-                  </p>
-               </section>
-
-               <section>
-                  <h3>5. Virtual Items</h3>
-                  <p>
-                     CS2 skins and other supported virtual items do not
-                     represent physical goods and do not grant ownership of the
-                     underlying CS2 game, software, or intellectual property.
+                     A transaction is considered complete only after the
+                     applicable payment and verification processes have been
+                     successfully completed. SkinVault may decline, cancel, or
+                     delay a transaction where reasonably necessary to prevent
+                     fraud, comply with applicable requirements, or protect
+                     users and the platform.
                   </p>
                </section>
 
                <section>
-                  <h3>6. Payments</h3>
+                  <h3>6. Digital Items</h3>
                   <p>
-                     Payments may be processed through third-party payment
-                     providers. Additional terms or fees imposed by those
-                     providers may apply.
+                     CS2 skins and other items available through SkinVault are
+                     digital items and do not constitute physical goods.
+                     Purchasing a digital item does not provide ownership of
+                     Counter-Strike 2, Steam, Valve's software, trademarks, or
+                     any underlying intellectual property.
                   </p>
                   <p>
-                     You agree not to use stolen payment methods, unauthorized
-                     accounts, fraudulent transactions, or any other payment
-                     method obtained unlawfully.
-                  </p>
-               </section>
-
-               <section>
-                  <h3>7. Prohibited Activities</h3>
-                  <p>
-                     You may not use SkinVault to engage in fraud, money
-                     laundering, unauthorized access, abuse of other users,
-                     manipulation of transactions, exploitation of technical
-                     vulnerabilities, or any other unlawful activity.
+                     Any use or transfer of digital items remains subject to
+                     applicable platform rules and the terms governing the
+                     relevant third-party services.
                   </p>
                </section>
 
                <section>
-                  <h3>8. Market Prices</h3>
+                  <h3>7. Payments</h3>
                   <p>
-                     Skin prices displayed on SkinVault may change at any time.
-                     We do not guarantee that displayed prices will remain
-                     accurate or available after you begin or complete a
-                     transaction.
+                     SkinVault may provide payment options including supported
+                     card and PayPal payment methods. Payments may be processed
+                     through third-party payment providers, and their respective
+                     terms and policies may also apply.
+                  </p>
+                  <p>
+                     You agree not to use stolen payment information,
+                     unauthorized accounts, fraudulent payment methods, or any
+                     other unlawful means to complete a transaction.
                   </p>
                </section>
 
                <section>
-                  <h3>9. Transactions and Refunds</h3>
+                  <h3>8. Pricing and Availability</h3>
                   <p>
-                     Completed transactions may not always be reversible.
-                     Refunds, cancellations, or transaction disputes may be
-                     subject to the circumstances of the transaction and any
-                     applicable payment provider policies.
+                     Prices and availability of skins may change at any time due
+                     to marketplace conditions, inventory, demand, or other
+                     factors. Displayed prices may therefore differ from prices
+                     available at a later time.
+                  </p>
+                  <p>
+                     SkinVault does not guarantee that a particular item will
+                     remain available or that a displayed price will remain
+                     unchanged until a transaction has been successfully
+                     completed.
                   </p>
                </section>
 
                <section>
-                  <h3>10. Steam and Third-Party Services</h3>
+                  <h3>9. Orders, Cancellations and Refunds</h3>
                   <p>
-                     SkinVault may interact with Steam or other third-party
-                     services. Your use of those services remains subject to
-                     their respective terms, policies, and rules.
+                     Once an order has been successfully completed, cancellation
+                     or reversal may not always be possible. Refund requests are
+                     reviewed according to the circumstances of the transaction
+                     and any applicable payment provider requirements.
                   </p>
                   <p>
-                     SkinVault is not responsible for outages, restrictions,
-                     account limitations, trade holds, API changes, or other
-                     issues caused by third-party services.
-                  </p>
-               </section>
-
-               <section>
-                  <h3>11. Account Suspension</h3>
-                  <p>
-                     SkinVault may suspend or terminate an account when we
-                     reasonably believe that the account has violated these
-                     Terms of Service, participated in fraudulent activity, or
-                     created a risk to other users or the platform.
+                     Where a transaction cannot be completed due to an issue
+                     within the SkinVault marketplace, the applicable order or
+                     payment process will be reviewed and handled in accordance
+                     with our policies.
                   </p>
                </section>
 
                <section>
-                  <h3>12. Platform Availability</h3>
+                  <h3>10. Delivery of Digital Items</h3>
                   <p>
-                     We aim to keep SkinVault available and functioning
-                     properly, but we do not guarantee uninterrupted or
-                     error-free access to the platform. Maintenance, technical
-                     problems, security incidents, or third-party outages may
-                     temporarily affect availability.
+                     Where applicable, purchased skins may be delivered through
+                     supported Steam or other third-party systems. SkinVault
+                     aims to provide fast delivery following successful payment
+                     and verification.
+                  </p>
+                  <p>
+                     Delivery may be affected by Steam restrictions, trade
+                     holds, account limitations, technical issues, or other
+                     circumstances outside SkinVault's reasonable control.
                   </p>
                </section>
 
                <section>
-                  <h3>13. Intellectual Property</h3>
+                  <h3>11. Prohibited Activities</h3>
                   <p>
-                     SkinVault's branding, website design, software, text,
-                     graphics, and other original content are protected by
-                     applicable intellectual property laws. You may not copy,
-                     reproduce, modify, or redistribute SkinVault content
-                     without appropriate authorization.
+                     Users may not use SkinVault for fraudulent, unlawful,
+                     abusive, or unauthorized activities. This includes
+                     attempting to manipulate transactions, use stolen payment
+                     information, gain unauthorized access to accounts or
+                     systems, exploit technical vulnerabilities, interfere with
+                     the platform, or engage in money laundering or other
+                     unlawful conduct.
                   </p>
                </section>
 
                <section>
-                  <h3>14. Limitation of Liability</h3>
+                  <h3>12. Steam and Third-Party Services</h3>
                   <p>
-                     To the extent permitted by applicable law, SkinVault is not
-                     responsible for losses resulting from third-party services,
-                     unauthorized access, market price changes, service
-                     interruptions, or events outside our reasonable control.
+                     SkinVault may rely on Steam and other third-party services
+                     to support certain marketplace functions. Your use of those
+                     services remains subject to their own terms, policies, and
+                     requirements.
+                  </p>
+                  <p>
+                     SkinVault is not responsible for third-party outages, trade
+                     restrictions, account limitations, API changes, service
+                     interruptions, or other issues outside our reasonable
+                     control.
                   </p>
                </section>
 
                <section>
-                  <h3>15. Changes to These Terms</h3>
+                  <h3>13. Account Suspension or Termination</h3>
                   <p>
-                     We may update these Terms of Service from time to time.
-                     Updated terms will become effective when published on the
-                     SkinVault platform. Continued use of SkinVault after an
-                     update means you acknowledge the updated terms.
+                     SkinVault may restrict, suspend, or terminate an account
+                     where there is a reasonable basis to believe that the user
+                     has violated these Terms, engaged in fraudulent or unlawful
+                     activity, misused the platform, or created a risk to other
+                     users or SkinVault.
                   </p>
                </section>
 
                <section>
-                  <h3>16. Contact</h3>
+                  <h3>14. Platform Availability</h3>
                   <p>
-                     If you have questions about these Terms of Service, please
-                     contact the SkinVault support team.
+                     We aim to maintain a reliable and accessible marketplace;
+                     however, uninterrupted or error-free availability cannot be
+                     guaranteed. Maintenance, technical failures, security
+                     incidents, third-party outages, or other circumstances may
+                     temporarily affect access to SkinVault.
+                  </p>
+               </section>
+
+               <section>
+                  <h3>15. Intellectual Property</h3>
+                  <p>
+                     SkinVault's name, branding, website design, software, text,
+                     graphics, and other original materials are owned by or
+                     licensed to SkinVault and are protected by applicable
+                     intellectual property laws.
+                  </p>
+                  <p>
+                     You may not copy, reproduce, modify, distribute, or
+                     commercially use SkinVault content without appropriate
+                     authorization.
+                  </p>
+               </section>
+
+               <section>
+                  <h3>16. Limitation of Liability</h3>
+                  <p>
+                     To the extent permitted by applicable law, SkinVault and
+                     BEMI PRIME LTD are not responsible for losses arising from
+                     third-party services, market price changes, service
+                     interruptions, account restrictions, unauthorized activity,
+                     or circumstances outside our reasonable control.
+                  </p>
+               </section>
+
+               <section>
+                  <h3>17. Changes to These Terms</h3>
+                  <p>
+                     We may update these Terms of Service from time to time to
+                     reflect changes to SkinVault, our services, or applicable
+                     requirements. Updated terms will become effective when
+                     published on the platform.
+                  </p>
+                  <p>
+                     Your continued use of SkinVault after updated terms are
+                     published constitutes acceptance of the revised Terms of
+                     Service.
+                  </p>
+               </section>
+
+               <section>
+                  <h3>18. Contact</h3>
+                  <p>
+                     If you have questions regarding these Terms of Service,
+                     transactions, your account, or the SkinVault platform,
+                     please contact our support team at support@skinvault.com.
                   </p>
                </section>
 
@@ -460,28 +536,28 @@ const Footer = () => {
                </div>
             </div>
          </CustomModal>
-
          <CustomModal
             isOpen={aboutModal}
             onClose={() => setAboutModal(false)}
             title="About SkinVault"
-            subTitle="A better way to buy and sell CS2 skins"
+            subTitle="A trusted marketplace for CS2 skins"
          >
             <div className={s.legal_content}>
                <section>
-                  <h3>Welcome to SkinVault</h3>
+                  <h3>About SkinVault</h3>
 
                   <p>
-                     SkinVault is a marketplace built for Counter-Strike 2
-                     players who want a simple, transparent, and modern way to
-                     discover, buy, and sell skins.
+                     SkinVault is a dedicated marketplace for Counter-Strike 2
+                     skins, created to provide players with a reliable and
+                     convenient platform for discovering, purchasing, and
+                     selling in-game items.
                   </p>
 
                   <p>
-                     We believe trading and collecting skins shouldn't feel
-                     complicated. That's why SkinVault is designed around a
-                     straightforward experience where you can explore items,
-                     compare prices, and manage your collection with ease.
+                     Our marketplace brings together a wide range of weapons,
+                     knives, gloves, and other CS2 items, allowing users to
+                     browse available products, review pricing, and manage their
+                     purchases in one place.
                   </p>
                </section>
 
@@ -489,58 +565,43 @@ const Footer = () => {
                   <h3>Our Mission</h3>
 
                   <p>
-                     Our mission is to make the CS2 skin marketplace easier to
-                     understand and more enjoyable for everyone—from players
-                     buying their first skin to collectors searching for their
-                     next favorite item.
+                     Our mission is to provide CS2 players with a marketplace
+                     experience that is straightforward, secure, and accessible.
+                     We aim to make purchasing and collecting skins convenient
+                     while maintaining clear information about products,
+                     pricing, orders, and transactions.
                   </p>
                </section>
 
                <section>
-                  <h3>Built for the Community</h3>
+                  <h3>Our Marketplace</h3>
 
                   <p>
-                     CS2 skins are more than just digital items. They are part
-                     of the identity, style, and culture of the Counter-Strike
-                     community.
+                     SkinVault is designed to support both new players and
+                     experienced collectors. Whether you are purchasing your
+                     first skin, upgrading your loadout, or searching for a
+                     specific collectible, our platform provides access to a
+                     broad selection of CS2 items.
                   </p>
 
                   <p>
-                     SkinVault aims to create a marketplace where players can
-                     discover items they actually want while having access to
-                     clear information about pricing and availability.
-                  </p>
-               </section>
-
-               <section>
-                  <h3>Simple. Transparent. Fast.</h3>
-
-                  <p>
-                     We focus on keeping the SkinVault experience clean and easy
-                     to use. No unnecessary complexity—just a marketplace built
-                     around the items you're looking for.
-                  </p>
-
-                  <p>
-                     From browsing categories to checking your orders, every
-                     part of the platform is designed with simplicity in mind.
+                     We support secure payment options and aim to provide fast
+                     delivery of purchased items, allowing users to complete
+                     their transactions and receive their skins without
+                     unnecessary delays.
                   </p>
                </section>
 
                <section>
-                  <h3>Why SkinVault?</h3>
+                  <h3>Security & Trust</h3>
 
                   <p>
-                     We created SkinVault with a simple idea: buying and selling
-                     CS2 skins should feel as smooth as using any modern
-                     marketplace.
-                  </p>
-
-                  <p>
-                     Our platform brings skins, pricing, orders, and your
-                     collection together in one place so you can spend less time
-                     dealing with the marketplace and more time enjoying the
-                     game.
+                     Trust is an important part of any marketplace. SkinVault is
+                     designed with security in mind, including secure payment
+                     processing and appropriate measures to protect account and
+                     transaction information. We are committed to providing
+                     users with a dependable environment for their CS2
+                     marketplace activity.
                   </p>
                </section>
 
@@ -548,21 +609,22 @@ const Footer = () => {
                   <h3>Our Vision</h3>
 
                   <p>
-                     We're building SkinVault with the goal of becoming a
-                     trusted destination for CS2 skin enthusiasts—a place where
-                     players can discover new items, build collections, and
-                     participate in the marketplace with confidence.
+                     Our vision is to build SkinVault into a trusted destination
+                     for the CS2 community. We are focused on continuously
+                     improving the marketplace, expanding the selection of
+                     available items, and providing a consistent experience for
+                     players and collectors.
                   </p>
                </section>
 
                <section>
-                  <h3>Built for CS2 Players</h3>
+                  <h3>Company</h3>
 
                   <p>
-                     Whether you're looking for your next AK-47, hunting for the
-                     perfect pair of gloves, or simply browsing what's
-                     available, SkinVault is built to make that experience
-                     better.
+                     SkinVault is operated by BEMI PRIME LTD, registered at 128
+                     City Road, London, EC1V 2NX. We are committed to developing
+                     SkinVault as a reliable marketplace for players looking to
+                     buy, sell, and collect CS2 skins.
                   </p>
                </section>
 
@@ -571,7 +633,6 @@ const Footer = () => {
                </div>
             </div>
          </CustomModal>
-
          <p className={s.footer_p}>
             SkinVault is your trusted marketplace for buying and selling CS2
             skins. Explore a wide selection of weapons, knives, gloves, and
