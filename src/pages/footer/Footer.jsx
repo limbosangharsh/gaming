@@ -7,6 +7,7 @@ import {
    FooterCategories,
 } from "../../utils/constants/Constants";
 import CustomModal from "../../components/CustomModal/CustomModal";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
    const [privacyModal, setPrivacyModal] = useState(false);
@@ -18,14 +19,15 @@ const Footer = () => {
          <div className={s.top_container}>
             {/* ══ COL 1 — BRAND ══ */}
             <div className={s.footer_row1}>
-               <a href="/" className={s.logo}>
+               <Link to="/" className={s.logo}>
                   <div className={s.logo_icon}>
                      <span className={s.logo_pulse}></span>
                   </div>
+
                   <span className={s.logo_text}>
                      SKIN<span className={s.logo_accent}>VAULT</span>
                   </span>
-               </a>
+               </Link>
                <p className={s.tagline}>
                   Buy and sell CS2 skins instantly. No middleman, no hidden fees
                   — just live market prices.
@@ -62,7 +64,7 @@ const Footer = () => {
                               {link.label}
                            </button>
                         ) : (
-                           <a href={link.href}>{link.label}</a>
+                           <Link to={link.href}>{link.label}</Link>
                         )}
                      </li>
                   ))}
@@ -76,7 +78,7 @@ const Footer = () => {
                <ul className={s.link_list}>
                   {FooterCategories.map((cat) => (
                      <li key={cat.href}>
-                        <a href={`/store${cat.href}`}>{cat.value}</a>
+                        <Link to={`/store${cat.href}`}>{cat.value}</Link>
                      </li>
                   ))}
                </ul>
@@ -116,7 +118,7 @@ const Footer = () => {
                               {link.label}
                            </button>
                         ) : (
-                           <a href={link.href}>{link.label}</a>
+                           <Link to={link.href}>{link.label}</Link>
                         )}
                      </li>
                   ))}
