@@ -54,7 +54,7 @@ const Footer = () => {
                   {FooterQuickLinks.map((link) => (
                      <li key={link.key}>
                         {link.label === "Support" ? (
-                           <button  
+                           <button
                               type="button"
                               onClick={() => setSupportModal(true)}
                               className={s.footer_button}
@@ -124,55 +124,57 @@ const Footer = () => {
             </div>
          </div>
 
-         <CustomModal
-            isOpen={supportModal}
-            onClose={() => setSupportModal(false)}
-            title="Support"
-            subTitle="We're here to help"
-         >
-            <div className={s.support_content}>
-               <div className={s.support_intro}>
-                  <h3>Need help with SkinVault?</h3>
+<CustomModal
+  isOpen={supportModal}
+  onClose={() => setSupportModal(false)}
+  title="Support"
+  subTitle="We're here to help"
+>
+  <div className={s.support_content}>
+    <div className={s.support_intro}>
+      <h3>How can we help?</h3>
+      <p>
+        Our support team is here to help with your SkinVault account,
+        purchases, sales, and other marketplace-related questions.
+        Whether you need help with your profile, Steam account,
+        payment, or an order, we're happy to assist.
+      </p>
+    </div>
 
-                  <p>
-                     If you have any questions or need assistance with your
-                     account, orders, payments, or skins, feel free to reach out
-                     to our support team.
-                  </p>
-               </div>
+    <div className={s.support_email}>
+      <span className={s.support_label}>Support Email</span>
+      <a
+        href="mailto:support@skinvault.com"
+        className={s.support_email_link}
+      >
+        support@skinvault.com
+      </a>
+    </div>
 
-               <div className={s.support_email}>
-                  <span className={s.support_label}>Email</span>
+    <div className={s.support_contact}>
+      <h3>Account & Payments</h3>
+      <p>
+        For account-related requests, we may need to verify details
+        such as your first name, last name, email address, Steam
+        information, or order details. For payment-related issues,
+        our team can also assist with card and PayPal transactions.
+      </p>
+    </div>
 
-                  <a
-                     href="mailto:support@skinvault.com"
-                     className={s.support_email_link}
-                  >
-                     support@skinvault.com
-                  </a>
-               </div>
+    <p className={s.support_response}>
+      For faster assistance, please include your order ID and a brief
+      description of the issue you're experiencing.
+    </p>
 
-               <p className={s.support_response}>
-                  We'll do our best to get back to you within 24–48 hours.
-               </p>
+    <a
+      href="mailto:support@skinvault.com"
+      className={s.support_button}
+    >
+      Contact Support
+    </a>
+  </div>
+</CustomModal>
 
-               <div className={s.support_contact}>
-                  <h3>Contact Support</h3>
-
-                  <p>
-                     For faster assistance, please include your order ID and a
-                     brief description of your issue when contacting us.
-                  </p>
-               </div>
-
-               <a
-                  href="mailto:support@skinvault.com"
-                  className={s.support_button}
-               >
-                  Contact Support
-               </a>
-            </div>
-         </CustomModal>
 
          <CustomModal
             isOpen={privacyModal}
@@ -571,8 +573,18 @@ const Footer = () => {
          </CustomModal>
 
          <p className={s.footer_p}>
-            SkinVault is your trusted marketplace for buying and selling CS2 skins. Explore a wide selection of weapons, knives, gloves, and other unique skins to find the perfect addition to your inventory. Whether you're looking for a rare collectible, upgrading your loadout, or simply searching for your next favorite skin, SkinVault makes it easy to discover and shop with confidence. Start exploring today and take your CS2 collection to the next level.
-
+            SkinVault is your trusted marketplace for buying and selling CS2
+            skins. Explore a wide selection of weapons, knives, gloves, and
+            other unique skins to find the perfect addition to your inventory.
+            Whether you're looking for a rare collectible, upgrading your
+            loadout, or simply searching for your next favorite skin, SkinVault
+            makes it easy to discover and shop with confidence. As part of our
+            commitment to providing a reliable marketplace experience, SkinVault
+            is operated by BEMI PRIME LTD, registered at 128 City Road, London,
+            EC1V 2NX. Start exploring today and take your CS2 collection to the
+            next level. Built with a focus on a smooth and reliable marketplace
+            experience, SkinVault is dedicated to making every step of your skin
+            journey simple and convenient.
          </p>
          {/* ══ BOTTOM BAR ══ */}
          <div className={s.bottom_container}>
