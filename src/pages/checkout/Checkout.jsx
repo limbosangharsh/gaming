@@ -43,7 +43,7 @@ const Checkout = () => {
       loading,
    } = useCartData();
 
-   console.log("checkout payment modal is ", paymentModal);
+   // console.log("checkout payment modal is ", paymentModal);
    return (
       <div className={s.page}>
          {/* ═════════════════════════════

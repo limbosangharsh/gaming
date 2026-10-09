@@ -40,8 +40,8 @@ export const useCartData = () => {
 
          setInitialItem(id);
 
-         console.log("Updated ID:", id);
-         console.log("Updated item:", item);
+         // console.log("Updated ID:", id);
+         // console.log("Updated item:", item);
       };
 
       window.addEventListener("initialItemChanged", handleChange);
@@ -103,7 +103,7 @@ export const useCartData = () => {
    // console.log(selectedItem)
    const handleNavigateCheckout = () => {
       navigate("/checkout")
-      console.log('hello world ')
+      // console.log('hello world ')
    }
    const handlePlaceOrder = () => {
       if (isCartEmpty) return;

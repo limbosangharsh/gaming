@@ -128,7 +128,7 @@ export const usePayment = () => {
    // --------------------------------
 
    const handleModal = () => {
-      console.log("handleModal run ");
+      // console.log("handleModal run ");
       const success = Math.random() < 0.5;
 
       setPaymentModal({
@@ -140,7 +140,7 @@ export const usePayment = () => {
    };
 
    const handleSubmit = (handlePlaceOrder) => {
-      console.log("click this shit");
+      // console.log("click this shit");
 
       const newErrors = validateAllPaymentCard(payMethod);
 
@@ -158,7 +158,7 @@ export const usePayment = () => {
 
       const paymentSuccess = handleModal();
 
-      console.log("paymentSuccess:", paymentSuccess);
+      // console.log("paymentSuccess:", paymentSuccess);
 
       if (paymentSuccess) {
          handlePlaceOrder();

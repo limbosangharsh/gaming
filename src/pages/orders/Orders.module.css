@@ -266,6 +266,7 @@
    font-size: 11px;
    color: var(--text-dimmed);
    letter-spacing: 0.04em;
+   width: min-content;
    /* text-transform: uppercase; */
 }
 
