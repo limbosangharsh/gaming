@@ -59,7 +59,7 @@ const Auth = ({ mode = "signup" }) => {
       setShowProgress(false);
       setResetLinkSent(false);
    };
-   
+
    return (
       <div className={s.page}>
          <div className={s.overlay} />
@@ -181,6 +181,7 @@ const Auth = ({ mode = "signup" }) => {
                                  error={errors.contact}
                                  reserveError
                                  autoComplete="off"
+                                 type="number"
                               />
                               <CustomInput
                                  label="Country"
@@ -191,6 +192,7 @@ const Auth = ({ mode = "signup" }) => {
                                  error={errors.country}
                                  reserveError
                                  autoComplete="off"
+                                 type="text"
                               />
                            </div>
                         </div>

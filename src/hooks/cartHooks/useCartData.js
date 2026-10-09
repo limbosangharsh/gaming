@@ -149,7 +149,7 @@ export const useCartData = () => {
             total: cartItems.reduce(
                (acc, item) => acc + item.price * item.quantity,
                0,
-            ),
+            ) * 1.02,
             placedAt: new Date().toISOString(),
             status: "delivering",
          };

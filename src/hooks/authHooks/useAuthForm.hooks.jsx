@@ -190,7 +190,7 @@ export const useAuthForm = () => {
 
          localStorage.setItem("logged_user", JSON.stringify(storedUser)); // current logged in user
 
-         localStorage.setItem("orders", JSON.stringify(STATIC_ORDERS));
+         localStorage.setItem("orders", JSON.stringify([]));
 
          setTimeout(() => {
             navigate("/");

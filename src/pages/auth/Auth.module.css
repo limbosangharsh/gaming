@@ -476,9 +476,10 @@
    padding: 0;
    border: none;
    background: transparent;
-   color: #eab308;
+   color: var(--accent-cyan);
    font-family: var(--font-body);
    font-size: 10px;
+   font-weight: 600;
    cursor: pointer;
 }
 
