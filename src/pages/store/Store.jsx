@@ -283,55 +283,73 @@ const Store = () => {
          <div className={s.main}>
             {/* <div className={s.space_top}></div> */}
 
-            <TrendingCard
-               skins={paginatedSkins}
-               columns="repeat(4, 1fr)"
-               pageSize={12}
-               cardContainerClass={s.store_card_container}
-            />
+            {filtered.length > 0 ? (
+               <TrendingCard
+                  skins={paginatedSkins}
+                  columns="repeat(4, 1fr)"
+                  cardContainerClass={s.store_card_container}
+               />
+            ) : (
+               <div className={s.empty_state}>
+                  <h3>No skins found</h3>
+                  <p>
+                     No skins match the selected condition. Try selecting
+                     another condition or resetting your filters.
+                  </p>
 
-            <div className={s.pagination}>
-               <button
-                  disabled={currentPage === 1}
-                  onClick={() => handlePageChange(currentPage - 1)}
-               >
-                  Back
-               </button>
+                  <button onClick={handleResetFilter}>Reset Filters</button>
+               </div>
+            )}
 
-               {Array.from(
-                  {
-                     length: Math.min(3, totalPages),
-                  },
-                  (_, i) => {
-                     let page;
+            {filtered.length > 0 && (
+               <div className={s.pagination}>
+                  <div className={s.pagination}>
+                     <button
+                        disabled={currentPage === 1}
+                        onClick={() => handlePageChange(currentPage - 1)}
+                     >
+                        Back
+                     </button>
 
-                     if (currentPage <= 2) {
-                        page = i + 1;
-                     } else if (currentPage >= totalPages - 1) {
-                        page = totalPages - Math.min(3, totalPages) + i + 1;
-                     } else {
-                        page = currentPage + i - 1;
-                     }
+                     {Array.from(
+                        {
+                           length: Math.min(3, totalPages),
+                        },
+                        (_, i) => {
+                           let page;
 
-                     return page;
-                  },
-               ).map((page) => (
-                  <button
-                     key={page}
-                     className={currentPage === page ? s.active_page : ""}
-                     onClick={() => handlePageChange(page)}
-                  >
-                     {page}
-                  </button>
-               ))}
+                           if (currentPage <= 2) {
+                              page = i + 1;
+                           } else if (currentPage >= totalPages - 1) {
+                              page =
+                                 totalPages - Math.min(3, totalPages) + i + 1;
+                           } else {
+                              page = currentPage + i - 1;
+                           }
 
-               <button
-                  disabled={currentPage === totalPages || totalPages === 0}
-                  onClick={() => handlePageChange(currentPage + 1)}
-               >
-                  Next
-               </button>
-            </div>
+                           return page;
+                        },
+                     ).map((page) => (
+                        <button
+                           key={page}
+                           className={currentPage === page ? s.active_page : ""}
+                           onClick={() => handlePageChange(page)}
+                        >
+                           {page}
+                        </button>
+                     ))}
+
+                     <button
+                        disabled={
+                           currentPage === totalPages || totalPages === 0
+                        }
+                        onClick={() => handlePageChange(currentPage + 1)}
+                     >
+                        Next
+                     </button>
+                  </div>
+               </div>
+            )}
          </div>
       </div>
    );

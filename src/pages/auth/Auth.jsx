@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import s from "./Auth.module.css";
 import CustomInput from "../../components/CustomInput/CustomInput";
 import { POINTS } from "../../utils/constants/Constants";
 import { useAuthForm } from "../../hooks/authHooks/useAuthForm.hooks";
+import CustomModal from "../../components/CustomModal/CustomModal.jsx";
+import Icon from "../../utils/icons/Icons.jsx";
 
 const Auth = ({ mode = "signup" }) => {
    const {
@@ -18,8 +20,46 @@ const Auth = ({ mode = "signup" }) => {
       isSignup,
       navigate,
    } = useAuthForm();
-   
 
+   const [forgotModal, setForgotModal] = useState(false);
+   const [forgotEmail, setForgotEmail] = useState("");
+   const [forgotError, setForgotError] = useState("");
+   const [forgotLoading, setForgotLoading] = useState(false);
+   const [showProgress, setShowProgress] = useState(false);
+   const [resetLinkSent, setResetLinkSent] = useState(false);
+
+   const handleForgotPassword = (e) => {
+      e.preventDefault();
+      setForgotError("");
+
+      const email = forgotEmail.trim();
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+         setForgotError("Please enter a valid email address.");
+         return;
+      }
+
+      setForgotEmail(email);
+      setForgotLoading(true);
+      setShowProgress(true);
+      setResetLinkSent(false);
+      setForgotLoading(false);
+
+      setTimeout(() => {
+         setShowProgress(false);
+         setResetLinkSent(true);
+      }, 5000);
+   };
+
+   const closeForgotModal = () => {
+      setForgotModal(false);
+      setForgotEmail("");
+      setForgotError("");
+      setForgotLoading(false);
+      setShowProgress(false);
+      setResetLinkSent(false);
+   };
+   
    return (
       <div className={s.page}>
          <div className={s.overlay} />
@@ -197,8 +237,108 @@ const Auth = ({ mode = "signup" }) => {
                   {isSignup ? (
                      ""
                   ) : (
-                     <span className={s.forgot}>Forgot Your Password?</span>
+                     <span
+                        type="button"
+                        className={s.forgot}
+                        onClick={() => setForgotModal(true)}
+                     >
+                        Forgot Your Password?
+                     </span>
                   )}
+                  <CustomModal
+                     isOpen={forgotModal}
+                     onClose={closeForgotModal}
+                     title={
+                        resetLinkSent ? "Check Your Email" : "Forgot Password?"
+                     }
+                     subTitle={
+                        resetLinkSent
+                           ? "We've received your password reset request."
+                           : "Enter your registered email address to reset your password."
+                     }
+                     modalClassname={s.forgot_modal}
+                  >
+                     <div className={s.forgot_content}>
+                        {!showProgress && !resetLinkSent && (
+                           <form onSubmit={handleForgotPassword}>
+                              <label
+                                 className={s.forgot_label}
+                                 htmlFor="forgot-email"
+                              >
+                                 Email Address
+                              </label>
+
+                              <input
+                                 id="forgot-email"
+                                 type="email"
+                                 className={s.forgot_input}
+                                 placeholder="john@gmail.com"
+                                 value={forgotEmail}
+                                 onChange={(e) =>
+                                    setForgotEmail(e.target.value)
+                                 }
+                                 autoComplete="email"
+                                 required
+                              />
+
+                              {forgotError && (
+                                 <p className={s.forgot_error}>{forgotError}</p>
+                              )}
+
+                              <button
+                                 type="submit"
+                                 className={s.forgot_submit}
+                                 disabled={forgotLoading}
+                              >
+                                 Send Reset Link
+                              </button>
+                           </form>
+                        )}
+
+                        {showProgress && (
+                           <div className={s.forgot_loading}>
+                              <p className={s.forgot_loading_title}>
+                                 Processing your request...
+                              </p>
+
+                              <p className={s.forgot_loading_text}>
+                                 Please wait while we prepare your password
+                                 reset instructions.
+                              </p>
+
+                              <div className={s.forgot_progress_bar}>
+                                 <div
+                                    key="progress"
+                                    className={s.forgot_progress_fill}
+                                 />
+                              </div>
+
+                              <p className={s.forgot_loading_hint}>
+                                 This will only take a few seconds.
+                              </p>
+                           </div>
+                        )}
+
+                        {resetLinkSent && (
+                           <>
+                              <p className={s.forgot_message}>
+                                 If an account exists with{" "}
+                                 <strong>{forgotEmail}</strong>, a password
+                                 reset link will be sent to that email address.
+                                 Please check your inbox and spam folder.
+                              </p>
+
+                              <button
+                                 type="button"
+                                 className={s.forgot_submit}
+                                 onClick={closeForgotModal}
+                              >
+                                 Back to Sign In
+                              </button>
+                           </>
+                        )}
+                     </div>
+                  </CustomModal>
                   <button
                      className={s.submit_btn}
                      onClick={handleSubmit}

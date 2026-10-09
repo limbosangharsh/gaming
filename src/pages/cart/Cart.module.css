@@ -236,6 +236,7 @@
       #080808 100%
    ); */
    padding: 1.5rem 0.5rem;
+   padding-top: auto;
    border: 1px dashed var(--border-subtle);
    margin-top: auto;
    /* height: 100%; */

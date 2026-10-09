@@ -154,7 +154,7 @@ const Cart = () => {
             )}
 
             {/* Trust Perks */}
-            {/* <div className={s.perks_grid}>
+            <div className={s.perks_grid}>
                {PAYMENT_PERKS.map((i, index) => (
                   <div key={index} className={s.perks_box}>
                      <label className={s.perk_label}>{i.label}</label>
@@ -162,7 +162,7 @@ const Cart = () => {
                      <p className={s.perk_desc}>{i.desc}</p>
                   </div>
                ))}
-            </div>/ */}
+            </div>
          </div>
 
          {/* ══ RIGHT ══ */}
