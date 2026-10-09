@@ -163,7 +163,7 @@
 .main {
    display: flex;
    flex-direction: column;
-   gap: 1.5rem;
+   /* gap: 1.5rem; */
    width: 85%;
    background-color: var(--bg-main);
    /* background-image: radial-gradient(

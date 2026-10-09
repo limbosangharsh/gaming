@@ -624,7 +624,7 @@ const Footer = () => {
 
                   <p>
                      SkinVault is operated by BEMI PRIME LTD, registered at 128
-                     City Road, London, EC1V 2NX. We are committed to developing
+                     City Road, London, EC1V2NX. We are committed to developing
                      SkinVault as a reliable marketplace for players looking to
                      buy, sell, and collect CS2 skins.
                   </p>
@@ -644,7 +644,7 @@ const Footer = () => {
             makes it easy to discover and shop with confidence. As part of our
             commitment to providing a reliable marketplace experience, SkinVault
             is operated by BEMI PRIME LTD, registered at 128 City Road, London,
-            EC1V 2NX. Start exploring today and take your CS2 collection to the
+            EC1V2NX. Start exploring today and take your CS2 collection to the
             next level. Built with a focus on a smooth and reliable marketplace
             experience, SkinVault is dedicated to making every step of your skin
             journey simple and convenient.

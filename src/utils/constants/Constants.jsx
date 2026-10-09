@@ -5128,7 +5128,7 @@ export const MOCK_ORDERS = [
       itemNames: "M4A4, Glock-18",
       date: "Aug 29, 2026",
       total: 312.4,
-      status: "delivering",
+      status: "delivered",
    },
    {
       id: "ORD-9RZP-A44M",

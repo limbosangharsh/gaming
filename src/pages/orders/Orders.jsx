@@ -106,7 +106,8 @@ const Orders = () => {
             <div className={s.stat_card}>
                <span className={s.stat_label}>Delivering</span>
                <span className={`${s.stat_value} ${s.stat_value_delivering}`}>
-                  {delivering}
+                  {  delivering}
+                  {/* 0 */}
                </span>
             </div>
             <div className={s.stat_card}>
