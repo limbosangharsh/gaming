@@ -620,6 +620,66 @@
    font-size: var(--font-sm);
    background-color: black;
 }
+
+.empty_orders {
+  min-height: 55vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  border-radius: 14px;
+}
+
+.empty_orders h3 {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.empty_orders p {
+  max-width: 440px;
+  color: #a1a1aa;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+.empty_orders span {
+  color: #eab308;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.empty_orders button {
+  margin-top: 10px;
+  padding: 12px 24px;
+  background: #eab308;
+  color: #101114;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.empty_orders button:hover {
+  background: #facc15;
+  transform: translateY(-2px);
+}
+
+.empty_orders button:active {
+  transform: translateY(0);
+}
+
 /* ══════════════════════════════════════
    TABLET
 ══════════════════════════════════════ */
@@ -808,4 +868,26 @@
    .stat_value {
       font-size: var(--font-base);
    }
+
+     .empty_orders {
+    min-height: 45vh;
+    padding: 28px 16px;
+  }
+
+  .empty_orders h3 {
+    font-size: 21px;
+  }
+
+  .empty_orders p {
+    font-size: 13px;
+  }
+
+  .empty_orders span {
+    font-size: 14px;
+  }
+
+  .empty_orders button {
+    width: 100%;
+    max-width: 240px;
+  }
 }

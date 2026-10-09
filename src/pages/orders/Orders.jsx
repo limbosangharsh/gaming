@@ -3,6 +3,7 @@ import s from "./Orders.module.css";
 import { useOrdersStats } from "../../hooks/ordersHooks/useOrderStats.hooks";
 import CustomInput from "../../components/CustomInput/CustomInput";
 import { MOCK_ORDERS } from "../../utils/constants/Constants";
+import { useNavigate } from "react-router-dom";
 
 const statusBadgeClass = {
    delivered: s.badge_delivered,
@@ -17,6 +18,8 @@ const statusLabel = {
 };
 
 const Orders = () => {
+
+   const navigate = useNavigate();
    const { totalSpent, totalItems, totalOrders, getOrderedItems, formatDate } =
       useOrdersStats();
 
@@ -106,7 +109,7 @@ const Orders = () => {
             <div className={s.stat_card}>
                <span className={s.stat_label}>Delivering</span>
                <span className={`${s.stat_value} ${s.stat_value_delivering}`}>
-                  {  delivering}
+                  {delivering}
                   {/* 0 */}
                </span>
             </div>
@@ -129,133 +132,153 @@ const Orders = () => {
          </div> */}
 
          {/* ══ TABLE ══ */}
-         <div className={s.table_wrap}>
-            <div className={s.table_head}>
-               <span className={s.th}>Order ID</span>
-               <span className={s.th}>Items</span>
-               <span className={s.th}>Date</span>
-               <span className={s.th}>Payment</span>
-               <span className={s.th}>Total</span>
-               <span className={s.th}>Status</span>
-               <span className={s.th}></span>
-            </div>
 
-            {filteredOrders?.map((order) => (
-               <div key={order.id} className={s.order_row}>
-                  <span className={s.order_id}>{order.id}</span>
-                  <div className={s.items_cell}>
-                     {order.items.length > 0 && (
-                        <>
-                           <div className={s.item_pill}>
-                              <img
-                                 src={order.items[0]?.image?.[0]}
-                                 className={s.thumb}
-                                 alt={order.items[0]?.name}
-                              />
+         {totalOrders > 0 ? (
+            <div className={s.table_wrap}>
+               <div className={s.table_head}>
+                  <span className={s.th}>Order ID</span>
+                  <span className={s.th}>Items</span>
+                  <span className={s.th}>Date</span>
+                  <span className={s.th}>Payment</span>
+                  <span className={s.th}>Total</span>
+                  <span className={s.th}>Status</span>
+                  <span className={s.th}></span>
+               </div>
 
-                              <span className={s.item_name}>
-                                 {order.items[0]?.name}
-                              </span>
+               {filteredOrders?.map((order) => (
+                  <div key={order.id} className={s.order_row}>
+                     <span className={s.order_id}>{order.id}</span>
+                     <div className={s.items_cell}>
+                        {order.items.length > 0 && (
+                           <>
+                              <div className={s.item_pill}>
+                                 <img
+                                    src={order.items[0]?.image?.[0]}
+                                    className={s.thumb}
+                                    alt={order.items[0]?.name}
+                                 />
 
-                              {order.items[0]?.quantity > 1 && (
-                                 <span className={s.item_qty}>
-                                    ×{order.items[0].quantity}
+                                 <span className={s.item_name}>
+                                    {order.items[0]?.name}
                                  </span>
+
+                                 {order.items[0]?.quantity > 1 && (
+                                    <span className={s.item_qty}>
+                                       ×{order.items[0].quantity}
+                                    </span>
+                                 )}
+                              </div>
+
+                              {order.items.length > 1 && (
+                                 <div
+                                    className={s.modal_btn}
+                                    onClick={() => handleOpenModal(order)}
+                                 >
+                                    +{order.items.length - 1}
+                                 </div>
                               )}
-                           </div>
+                           </>
+                        )}
+                     </div>
 
-                           {order.items.length > 1 && (
-                              <div
-                                 className={s.modal_btn}
-                                 onClick={() => handleOpenModal(order)}
-                              >
-                                 +{order.items.length - 1}
-                              </div>
-                           )}
-                        </>
-                     )}
-                  </div>
+                     {itemModal && selectedOrder && (
+                        <div
+                           className={s.item_modal_overlay}
+                           onClick={(e) => {
+                              if (e.target === e.currentTarget) {
+                                 handleCloseModal();
+                              }
+                           }}
+                        >
+                           <div className={s.item_modal}>
+                              <div className={s.modal_header}>
+                                 <div>
+                                    <span className={s.modal_label}>
+                                       ORDER ITEMS
+                                    </span>
+                                    <h2>Order #{selectedOrder.id}</h2>
+                                 </div>
 
-                  {itemModal && selectedOrder && (
-                     <div
-                        className={s.item_modal_overlay}
-                        onClick={(e) => {
-                           if (e.target === e.currentTarget) {
-                              handleCloseModal();
-                           }
-                        }}
-                     >
-                        <div className={s.item_modal}>
-                           <div className={s.modal_header}>
-                              <div>
-                                 <span className={s.modal_label}>
-                                    ORDER ITEMS
-                                 </span>
-                                 <h2>Order #{selectedOrder.id}</h2>
+                                 <button
+                                    className={s.modal_close}
+                                    onClick={handleCloseModal}
+                                 >
+                                    ×
+                                 </button>
                               </div>
 
-                              <button
-                                 className={s.modal_close}
-                                 onClick={handleCloseModal}
-                              >
-                                 ×
-                              </button>
-                           </div>
+                              <div className={s.modal_items}>
+                                 {selectedOrder.items.map((item, index) => (
+                                    <div className={s.modal_item} key={index}>
+                                       <img
+                                          src={item?.image?.[0]}
+                                          alt={item?.name}
+                                          className={s.modal_thumb}
+                                       />
 
-                           <div className={s.modal_items}>
-                              {selectedOrder.items.map((item, index) => (
-                                 <div className={s.modal_item} key={index}>
-                                    <img
-                                       src={item?.image?.[0]}
-                                       alt={item?.name}
-                                       className={s.modal_thumb}
-                                    />
+                                       <div className={s.modal_item_info}>
+                                          <span className={s.modal_item_name}>
+                                             {item?.name}
+                                          </span>
 
-                                    <div className={s.modal_item_info}>
-                                       <span className={s.modal_item_name}>
-                                          {item?.name}
-                                       </span>
+                                          <span className={s.modal_item_qty}>
+                                             Quantity ×{item?.quantity ?? 1}
+                                          </span>
+                                       </div>
 
-                                       <span className={s.modal_item_qty}>
-                                          Quantity ×{item?.quantity ?? 1}
+                                       <span className={s.modal_item_number}>
+                                          #{index + 1}
                                        </span>
                                     </div>
-
-                                    <span className={s.modal_item_number}>
-                                       #{index + 1}
-                                    </span>
-                                 </div>
-                              ))}
+                                 ))}
+                              </div>
                            </div>
                         </div>
-                     </div>
-                  )}
-                  <span className={s.date_cell}>
-                     {formatDate(order.placedAt)}
-                  </span>
-
-                  <span className={s.date_cell}>Credit Card</span>
-
-                  <span className={s.total_cell}>
-                     $
-                     {order.total.toLocaleString("en-US", {
-                        minimumFractionDigits: 2,
-                     })}
-                  </span>
-
-                  <div className={s.status_cell}>
-                     <span className={`${s.badge}`}>
-                        {/* {statusLabel[order.status]} */}
-                        Delivered
+                     )}
+                     <span className={s.date_cell}>
+                        {formatDate(order.placedAt)}
                      </span>
-                  </div>
 
-                  {/* <div className={s.view_cell}>
+                     <span className={s.date_cell}>Credit Card</span>
+
+                     <span className={s.total_cell}>
+                        $
+                        {order.total.toLocaleString("en-US", {
+                           minimumFractionDigits: 2,
+                        })}
+                     </span>
+
+                     <div className={s.status_cell}>
+                        <span className={`${s.badge}`}>
+                           {/* {statusLabel[order.status]} */}
+                           Delivered
+                        </span>
+                     </div>
+
+                     {/* <div className={s.view_cell}>
                      <button className={s.view_link}>View →</button>
                   </div> */}
-               </div>
-            ))}
-         </div>
+                  </div>
+               ))}
+            </div>
+         ) : (
+            <div className={s.empty_orders}>
+               <h3>No Orders Yet</h3>
+
+               <p>
+                  You haven't placed any orders yet. Your purchased skins will
+                  appear here once you complete your first order.
+               </p>
+
+               <span>Ready to find your next skin?</span>
+
+               <p>
+                  Explore the marketplace and discover your next favorite skin.
+               </p>
+
+               <button onClick={() => navigate("/store")}>Explore Skins</button>
+            </div>
+         )}
 
          {/* ══ FOOTER ══ */}
          {/* <div className={s.footer}>
