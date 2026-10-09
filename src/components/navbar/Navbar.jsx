@@ -212,8 +212,7 @@ const Navbar = () => {
                         >
                            <div className={s.dropdown_header}>
                               <span className={s.dropdown_email}>
-                                 Hi, {user.firstName}!
-                                 {/* <br></br> */}
+                                 Hi, {user.firstName}!{/* <br></br> */}
                                  {/* {user.email} */}
                               </span>
                            </div>
@@ -344,10 +343,13 @@ const Navbar = () => {
             </Link>
             <Link
                to="/cart"
-               className={`${s.bottomNav_item} ${location.pathname === "/cart" ? s.bottomNav_item_active : ""}`}
+               className={`${s.bottomNav_item}  ${location.pathname === "/cart" ? s.bottomNav_item_active : ""}`}
             >
-               <Icon name="cartIcon" size={20} />
-               <span className={s.bottomNav_label}>Cart</span>
+               <Icon name="cartIcon" size={20} className={s.cart_icon_bottom} />
+               <span className={`${s.bottomNav_label} `}>Cart</span>
+               {cartCount > 0 && (
+                  <span className={s.cart_badge_bottom}>{cartCount}</span>
+               )}
             </Link>
             <Link
                onClick={() => {

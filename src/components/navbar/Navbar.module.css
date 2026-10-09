@@ -365,6 +365,9 @@
    position: relative; /* ← add this */
 }
 
+.cart_icon_bottom{
+   position: relative;
+}
 .cart_badge {
    position: absolute;
    top: -6px;
@@ -381,6 +384,24 @@
    align-items: center;
    justify-content: center;
    border: 2px solid var(--bg-main);
+}
+
+.cart_badge_bottom{
+      position: absolute;
+   background: var(--accent-cyan);
+   color: #000;
+   font-family: var(--font-heading);
+   font-size: 9px;
+   font-weight: 700;
+   min-width: 16px;
+   height: 16px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 2px solid var(--bg-main);
+   top: 5px;
+   right: 46%;
 }
 
 .cart_icon:hover {

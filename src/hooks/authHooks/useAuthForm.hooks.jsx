@@ -33,7 +33,7 @@ export const useAuthForm = () => {
 
    const fieldsToValidate = isSignup
       ? formData
-      : { email: formData.email, password: formData.password };
+      : { email: formData.email.toLowerCase(), password: formData.password };
 
    const formIsValid = isFormValid(validateAll(fieldsToValidate));
 
@@ -84,7 +84,8 @@ export const useAuthForm = () => {
 
          // Check if email is already registered
          const userExists = existingUsers.some(
-            (user) => user.email === formData.email,
+            (user) =>
+               user.email.toLowerCase() === formData.email.trim().toLowerCase(),
          );
 
          if (userExists) {
@@ -112,7 +113,7 @@ export const useAuthForm = () => {
             lastName: formData.lastName,
             contact: formData.contact,
             country: formData.country,
-            email: formData.email,
+            email: formData.email.trim().toLowerCase(),
             password: formData.password,
          };
 
@@ -145,7 +146,8 @@ export const useAuthForm = () => {
 
          // Find user by email
          const storedUser = existingUsers.find(
-            (user) => user.email === formData.email,
+            (user) =>
+               user.email.toLowerCase() === formData.email.trim().toLowerCase(),
          );
 
          // User doesn't exist
