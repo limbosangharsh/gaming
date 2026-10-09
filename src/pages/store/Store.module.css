@@ -412,6 +412,100 @@
    font-family: var(--font-heading);
    font-weight: normal;
 }
+
+
+.pagination {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-wrap: wrap;
+   gap: var(--space-2);
+   width: 100%;
+   margin: var(--space-2) 0;
+   /* padding: var(--space-4) 0; */
+   font-family: var(--font-body);
+}
+
+.pagination button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   box-sizing: border-box;
+
+   min-width: 33px;
+   height: 33px;
+   padding: 0 var(--space-2);
+
+   background: var(--bg-card);
+   color: var(--text-secondary);
+   border: 1px solid var(--border-card);
+   border-radius: 6px;
+
+   font-family: var(--font-body);
+   font-size: var(--font-base);
+   font-weight: 500;
+   line-height: 1;
+   cursor: pointer;
+   transform: none;
+   outline-offset: 3px;
+   -webkit-tap-highlight-color: transparent;
+}
+
+/* Hover */
+.pagination button:hover:not(:disabled):not(.active_page) {
+   background: var(--overlay-cyan-tint);
+   color: var(--accent-cyan);
+   border-color: var(--border-cyan-hover);
+}
+
+/* Active page */
+.pagination button.active_page {
+   background: var(--accent-cyan);
+   color: var(--text-dark);
+   border-color: var(--accent-cyan);
+   font-weight: 500;
+
+   /* Keep the glow subtle */
+   box-shadow: 0 0 6px var(--accent-cyan-glow);
+}
+
+/* Disabled buttons */
+.pagination button:disabled {
+   background: var(--bg-card-alt);
+   color: var(--text-dimmed);
+   border-color: var(--border-card);
+   cursor: not-allowed;
+   opacity: 0.5;
+}
+
+/* Keyboard focus */
+.pagination button:focus-visible {
+   outline: 2px solid var(--accent-cyan);
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+   .pagination {
+      gap: 6px;
+      margin: var(--space-5) 0;
+      padding: var(--space-3) 0;
+   }
+
+   .pagination button {
+      min-width: 34px;
+      height: 36px;
+      padding: 0 8px;
+      font-size: var(--font-sm);
+      border-radius: 5px;
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .pagination button {
+      transition: none;
+   }
+}
+
 @media (max-width: 1024px) {
    .sidebar {
       width: 25%;
@@ -537,5 +631,19 @@
 
    .page {
       margin-top: 82px;
+   }
+
+      .pagination {
+      gap: 6px;
+      margin: var(--space-5) 0;
+      padding: var(--space-3) 0;
+   }
+
+   .pagination button {
+      min-width: 34px;
+      height: 36px;
+      padding: 0 8px;
+      font-size: var(--font-sm);
+      border-radius: 5px;
    }
 }

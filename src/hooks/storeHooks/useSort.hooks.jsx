@@ -1,6 +1,18 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { allSkins } from "../../utils/constants/Constants";
+
+// fisher yates shuffling algo
+const shuffleArray = (array) => {
+   const shuffled = [...array];
+
+   for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+   }
+
+   return shuffled;
+};
 
 export const useSort = (category) => {
    const [activeCategories, setActiveCategories] = useState(
@@ -14,6 +26,9 @@ export const useSort = (category) => {
    const [minFocused, setMinFocused] = useState(false);
    const [openSidebar, setOpenSidebar] = useState(false);
    const [deviceFilter, setDeviceFilter] = useState(true);
+   const [shuffledSkins] = useState(() => shuffleArray(allSkins));
+   const [currentPage, setCurrentPage] = useState(1); // initial pag4
+   const itemsPerPage = 24;
 
    const toggleCategory = (id) => {
       if (id === "all") {
@@ -37,7 +52,7 @@ export const useSort = (category) => {
       }
    };
 
-   const filtered = allSkins.filter((skin) => {
+   const filtered = shuffledSkins.filter((skin) => {
       if (
          activeCategories.length > 0 &&
          !activeCategories.includes(skin.category)
@@ -52,6 +67,18 @@ export const useSort = (category) => {
          return false;
       return true;
    });
+
+   const totalPages = Math.ceil(filtered.length / itemsPerPage);
+
+   const paginatedSkins = filtered.slice(
+      (currentPage - 1) * itemsPerPage,
+      currentPage * itemsPerPage,
+   );
+
+   const handlePageChange = (page) => {
+      if (page < 1 || page > totalPages) return;
+      setCurrentPage(page);
+   };
 
    const handleResetFilter = () => {
       setActiveCategories([]);
@@ -108,6 +135,16 @@ export const useSort = (category) => {
       };
    }, []);
 
+   useEffect(() => {
+      setCurrentPage(1);
+   }, [activeCategories, activeConditions, priceRange]);
+
+   useEffect(() => {
+      window.scrollTo({
+         top: 0,
+         behavior: "smooth",
+      });
+   }, [currentPage]);
    return {
       activeCategories,
       activeConditions,
@@ -128,5 +165,9 @@ export const useSort = (category) => {
       openSidebar,
       toggleSidebar,
       deviceFilter,
+      paginatedSkins,
+      currentPage,
+      totalPages,
+      handlePageChange,
    };
 };

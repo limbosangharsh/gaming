@@ -29,26 +29,27 @@ const Store = () => {
       openSidebar,
       toggleSidebar,
       deviceFilter,
+      paginatedSkins,
+      currentPage,
+      totalPages,
+      handlePageChange,
    } = useSort(category);
 
    // console.log(openSidebar);
 
-const [sidebarOpen, setSidebarOpen] = useState(false);
+   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-useEffect(() => {
-   const handleSidebarToggle = (event) => {
-      setSidebarOpen(event.detail.openSidebar);
-   };
+   useEffect(() => {
+      const handleSidebarToggle = (event) => {
+         setSidebarOpen(event.detail.openSidebar);
+      };
 
-   document.addEventListener("sidebar-toggled", handleSidebarToggle);
+      document.addEventListener("sidebar-toggled", handleSidebarToggle);
 
-   return () => {
-      document.removeEventListener(
-         "sidebar-toggled",
-         handleSidebarToggle
-      );
-   };
-}, []);
+      return () => {
+         document.removeEventListener("sidebar-toggled", handleSidebarToggle);
+      };
+   }, []);
 
    return (
       <div className={s.page}>
@@ -65,11 +66,12 @@ useEffect(() => {
                <Icon name={"filterIcon"} size={16} />
             </span>
          </div> */}
-<div
-   className={`${s.sidebar} ${
-      sidebarOpen ? s.openSidebar : s.closeSidebar
-   }`}
->            {" "}
+         <div
+            className={`${s.sidebar} ${
+               sidebarOpen ? s.openSidebar : s.closeSidebar
+            }`}
+         >
+            {" "}
             <h3 className={s.sidebar_title}>Filters</h3>
             {/* CATEGORY */}
             <div className={s.filter_group}>
@@ -280,12 +282,56 @@ useEffect(() => {
 
          <div className={s.main}>
             {/* <div className={s.space_top}></div> */}
+
             <TrendingCard
-               skins={filtered}
+               skins={paginatedSkins}
                columns="repeat(4, 1fr)"
-               pageSize={filtered.length}
+               pageSize={12}
                cardContainerClass={s.store_card_container}
             />
+
+            <div className={s.pagination}>
+               <button
+                  disabled={currentPage === 1}
+                  onClick={() => handlePageChange(currentPage - 1)}
+               >
+                  Back
+               </button>
+
+               {Array.from(
+                  {
+                     length: Math.min(3, totalPages),
+                  },
+                  (_, i) => {
+                     let page;
+
+                     if (currentPage <= 2) {
+                        page = i + 1;
+                     } else if (currentPage >= totalPages - 1) {
+                        page = totalPages - Math.min(3, totalPages) + i + 1;
+                     } else {
+                        page = currentPage + i - 1;
+                     }
+
+                     return page;
+                  },
+               ).map((page) => (
+                  <button
+                     key={page}
+                     className={currentPage === page ? s.active_page : ""}
+                     onClick={() => handlePageChange(page)}
+                  >
+                     {page}
+                  </button>
+               ))}
+
+               <button
+                  disabled={currentPage === totalPages || totalPages === 0}
+                  onClick={() => handlePageChange(currentPage + 1)}
+               >
+                  Next
+               </button>
+            </div>
          </div>
       </div>
    );

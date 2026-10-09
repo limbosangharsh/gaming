@@ -179,7 +179,7 @@ const TrendingCards = ({
                   }}
                >
                   <img
-                     src={skin.image[0]}
+                     src={skin?.image[0]}
                      alt={`${skin.weapon} ${skin.name}`}
                      loading="lazy"
                      className={`${s.card_img} ${skin.category === "gloves" ? s.card_img_gloves : ""}`}
