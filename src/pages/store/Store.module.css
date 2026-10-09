@@ -413,7 +413,6 @@
    font-weight: normal;
 }
 
-
 .pagination {
    display: flex;
    align-items: center;
@@ -633,10 +632,9 @@
       margin-top: 82px;
    }
 
-      .pagination {
+   .pagination {
       gap: 6px;
-      margin: var(--space-5) 0;
-      padding: var(--space-3) 0;
+      margin: var(--space-0) 0;
    }
 
    .pagination button {
